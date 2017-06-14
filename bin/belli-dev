@@ -1,0 +1,4 @@
+#!/usr/bin/env node
+const runGulp = require('../lib/utils/runGulp');
+
+runGulp();
