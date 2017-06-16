@@ -1,5 +1,5 @@
 {
-  "name": "belli",
+  "name": "@strateg/pocketknife",
   "description": "",
   "version": "0.1.0",
   "author": "Strateg Marknadsföring AB <alexander.nanberg@strateg.se>",
@@ -12,7 +12,7 @@
     "lib"
   ],
   "bin": {
-    "belli": "./bin/belli"
+    "belli": "./bin/pocketknife"
   },
   "dependencies": {
     "babel-core": "^6.24.1",

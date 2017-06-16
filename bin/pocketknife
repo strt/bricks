@@ -39,6 +39,6 @@ if (!commands.has(cmd)) {
   cmd = defaultCommand;
 }
 
-const bin = path.join(__dirname, `belli-${cmd}`);
+const bin = path.join(__dirname, `pocketknife-${cmd}`);
 
 execa(bin, { stdio: 'inherit' });
