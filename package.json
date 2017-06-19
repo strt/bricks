@@ -1,7 +1,7 @@
 {
-  "name": "@strateg/pocketknife",
+  "name": "@strateg/bricks",
   "description": "",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": "Strateg Marknadsföring AB <alexander.nanberg@strateg.se>",
   "license": "MIT",
   "engines": {
@@ -12,7 +12,7 @@
     "lib"
   ],
   "bin": {
-    "belli": "./bin/pocketknife"
+    "bricks": "./bin/bricks"
   },
   "dependencies": {
     "babel-core": "^6.24.1",
@@ -54,6 +54,6 @@
     "eslint-plugin-jsx-a11y": "^5.0.3",
     "eslint-plugin-react": "^7.0.1",
     "husky": "^0.13.4",
-    "lint-staged": "^3.6.1"
+    "lint-staged": "^4.0.0"
   }
 }
