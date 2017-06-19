@@ -1,1 +1,77 @@
 # Bricks
+
+> Minimal build process that just works
+
+- [Getting started](#getting-started)
+- [User guide](#user-guide)
+  - [Available commands](#available-commands)
+  - [Configuration](#configuration)
+  - [Customize babel config](#customize-babel-config)
+
+## Getting started
+
+Add Bricks as a devDependency
+```bash
+$ yarn add --dev @strt/bricks
+# or
+$ npm install --dev @strt/bricks
+```
+
+Add Bricks to npm scripts
+```js
+// package.json
+{
+  ...
+  "scripts": {
+    "dev": "bricks",
+    "build": "bricks build"
+  }
+}
+```
+
+Run `yarn dev` or `npm run dev` to build your project in development mode
+
+## User guide
+
+### Available commands
+- `bricks` Builds the project in development mode and watches for changes
+- `bricks build` Builds the project for production (minifies scripts, optimizes images etc)
+
+### Configuration
+You can define your options in your `package.json` or in a `bricks.config.js` file in the root of your project. 
+
+```js
+// package.json
+{ 
+  ...
+  "bricks": {
+    // Config options here
+  }
+}
+```
+
+```js
+// bricks.config.js
+module.exports = {
+  // Config options here
+}
+``` 
+
+### Options
+Todo
+
+### Customize babel config
+Add a `.babelrc` to the root of your project. Bricks will find it and merge it with the built-in babel config. 
+
+Here is an example of a `.babelrc` file:
+```js
+{
+  "preset": [
+    ["env", { "modules": false }], 
+    "react"
+  ],
+  "plugins": [
+    "transform-decorators-legacy"
+  ]
+}
+```
