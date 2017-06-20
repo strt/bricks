@@ -6,6 +6,7 @@
 - [User guide](#user-guide)
   - [Available commands](#available-commands)
   - [Configuration](#configuration)
+  - [Options](#options)
   - [Customize babel config](#customize-babel-config)
 
 ## Getting started
@@ -58,7 +59,87 @@ module.exports = {
 ``` 
 
 ### Options
-Todo
+
+#### Source
+Path to the source folder
+
+<details>
+  <summary>Example</summary>
+
+  ```js
+  {
+    ...
+    source: 'src'
+  }
+  ```
+</details>
+
+#### Output
+Path to the dist folder
+
+<details>
+  <summary>Example</summary>
+
+  ```js
+  {
+    ...
+    output: 'src'
+  }
+  ```
+</details>
+
+#### Styles
+Path to the styles folder
+
+<details>
+  <summary>Example</summary>
+
+  ```js
+  {
+    ...
+    styles: {
+      path: 'styles'
+    }
+  }
+  ```
+</details>
+
+#### Scipts
+Path to the dist folder
+
+<details>
+  <summary>Example</summary>
+
+  ```js
+  {
+    ...
+    output: 'src'
+  }
+  ```
+</details>
+
+#### Serve
+All options are sent directly to [BrowserSync](https://www.browsersync.io/docs/options)
+
+<details>
+  <summary>Example</summary>
+
+  ```js
+  {
+    ...
+    serve: {
+      proxy: 'strateg.se',
+      serveStatic: [
+        {
+          route: '/webdav/files/resources',
+          dir: 'dist'
+        }
+      ]
+    }
+  }
+  ```
+</details>
+
 
 ### Customize babel config
 Add a `.babelrc` to the root of your project. Bricks will find it and merge it with the built-in babel config. 
