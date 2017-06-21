@@ -6,8 +6,9 @@
 - [User guide](#user-guide)
   - [Available commands](#available-commands)
   - [Configuration](#configuration)
-  - [Options](#options)
+  - [Browser support](#browser-support)
   - [Customize babel config](#customize-babel-config)
+  - [Options](#options)
 
 ## Getting started
 
@@ -55,6 +56,35 @@ You can define your options in your `package.json` or in a `bricks.config.js` fi
 // bricks.config.js
 module.exports = {
   // Config options here
+}
+```
+
+### Browser support
+To customize which browsers you want autoprefixer to prefix simple add a [browserslist](https://github.com/ai/browserslist) property to your `package.json`.
+
+```js
+{
+  ...
+  "browserslist": [
+    "ie 11",
+    "last 2 versions"
+  ]
+}
+```
+
+### Customize babel config
+Add a `.babelrc` to the root of your project. Bricks will find it and merge it with the built-in babel config. 
+
+Here is an example of a `.babelrc` file:
+```js
+{
+  "preset": [
+    ["env", { "modules": false }], 
+    "react"
+  ],
+  "plugins": [
+    "transform-decorators-legacy"
+  ]
 }
 ``` 
 
@@ -140,19 +170,3 @@ All options are sent directly to [BrowserSync](https://www.browsersync.io/docs/o
   ```
 </details>
 
-
-### Customize babel config
-Add a `.babelrc` to the root of your project. Bricks will find it and merge it with the built-in babel config. 
-
-Here is an example of a `.babelrc` file:
-```js
-{
-  "preset": [
-    ["env", { "modules": false }], 
-    "react"
-  ],
-  "plugins": [
-    "transform-decorators-legacy"
-  ]
-}
-```
