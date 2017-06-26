@@ -1,6 +1,6 @@
 # Bricks
 
-> Minimal build process that just works
+> Minimal build tool that just works
 
 - [Getting started](#getting-started)
 - [User guide](#user-guide)
