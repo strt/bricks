@@ -6,6 +6,9 @@ const chalk = require('chalk');
 const semver = require('semver');
 const pkg = require('../package.json');
 
+// Set .env variables
+require('dotenv').config();
+
 // Check node version
 if (!semver.satisfies(process.version, pkg.engines.node)) {
   console.error(`${chalk.red('error')} Required node version ${pkg.engines.node} not satisfied with installed version ${process.version} \n`);
@@ -15,6 +18,7 @@ if (!semver.satisfies(process.version, pkg.engines.node)) {
 const defaultCommand = 'dev';
 const commands = new Set([
   'build',
+  'deploy',
   defaultCommand,
 ]);
 

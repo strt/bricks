@@ -1,0 +1,59 @@
+#!/usr/bin/env node
+const fs = require('fs');
+const path = require('path');
+const glob = require('glob');
+const request = require('request');
+const logSymbols = require('log-symbols');
+const inquirer = require('inquirer');
+const Listr = require('listr');
+const config = require('../lib/config');
+
+const files = glob.sync(`${config.output}/**/*`)
+  .filter(file => fs.statSync(file).isFile());
+
+const reqOptions = {
+  auth: {
+    user: process.env.USERNAME,
+    pass: process.env.PASSWORD,
+  },
+};
+
+const uploadingTasks = files.map((file) => {
+  const title = file.replace(`${config.output}/`, '');
+  return {
+    title,
+    task: () => new Promise((resolve, reject) => {
+      fs.createReadStream(path.resolve(file))
+        .pipe(request.put(`${process.env.URL}/${title}`, reqOptions))
+        .on('response', (res) => {
+          if (res.statusCode > 400) reject(new Error('Connection faliure'));
+          resolve();
+        })
+        .on('error', (err) => {
+          reject(new Error(err));
+        });
+    }).catch(err => console.error(err)),
+  };
+});
+
+const tasks = new Listr([
+  {
+    title: 'Uploading files',
+    task: () => new Listr(uploadingTasks, { concurrent: true }),
+  },
+]);
+
+inquirer.prompt([{
+  type: 'confirm',
+  name: 'confirmation',
+  message: 'Are you sure you want to deploy?',
+}])
+.then((answers) => {
+  if (!answers.confirmation) return false;
+  return tasks.run();
+})
+.then((success) => {
+  if (!success) return;
+  console.log(` ${logSymbols.success} Done`);
+});
+
