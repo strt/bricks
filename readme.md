@@ -19,7 +19,7 @@ $ yarn add --dev @strt/bricks
 $ npm install --dev @strt/bricks
 ```
 
-Add Bricks to npm scripts
+Add Bricks as npm scripts
 ```js
 // package.json
 {
@@ -31,12 +31,15 @@ Add Bricks to npm scripts
 }
 ```
 
-Run `yarn dev` or `npm run dev` to build your project in development mode
+Or run directly with `npx`
+```
+$ npx bricks
+```
 
 ## User guide
 
 ### Available commands
-- `bricks` Builds the project in development mode and watches for changes
+- `bricks` Builds the project for development 
 - `bricks build` Builds the project for production (minifies scripts, optimizes images etc)
 
 ### Configuration
