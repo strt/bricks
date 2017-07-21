@@ -78,10 +78,7 @@ Add a `.babelrc` to the root of your project. Bricks will find it and merge it w
 Here is an example of a `.babelrc` file:
 ```js
 {
-  "preset": [
-    ["env", { "modules": false }], 
-    "react"
-  ],
+  "preset": ["@strt/bricks/babel"],
   "plugins": [
     "transform-decorators-legacy"
   ]
