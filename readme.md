@@ -119,7 +119,7 @@ Path to the dist folder
 </details>
 
 #### Styles
-Path to the styles folder
+Styles configuration
 
 <details>
   <summary>Example</summary>
@@ -128,14 +128,15 @@ Path to the styles folder
   {
     ...
     styles: {
-      path: 'styles'
+      path: 'styles',
+      entries: ['./main.scss'],
     }
   }
   ```
 </details>
 
 #### Scipts
-Path to the dist folder
+Scripts configuration
 
 <details>
   <summary>Example</summary>
@@ -143,7 +144,12 @@ Path to the dist folder
   ```js
   {
     ...
-    output: 'src'
+    styles: {
+      path: 'scripts',
+      entries: ['./main.js'],
+      publicPath: '',
+
+    }
   }
   ```
 </details>
