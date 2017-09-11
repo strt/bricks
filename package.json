@@ -44,7 +44,7 @@
     "gulp-sourcemaps": "^2.6.1",
     "gulp-svg-sprite": "^1.3.7",
     "html-loader": "^0.5.1",
-    "inquirer": "^3.2.2",
+    "inquirer": "^3.2.3",
     "listr": "^0.12.0",
     "log-symbols": "^2.0.0",
     "meow": "^3.7.0",
@@ -53,15 +53,15 @@
     "require-dir": "^0.3.2",
     "semver": "^5.4.1",
     "time-stamp": "^2.0.0",
-    "webpack": "^3.5.5",
+    "webpack": "^3.5.6",
     "webpack-dev-middleware": "^1.12.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
-    "eslint": "^4.5.0",
-    "eslint-config-airbnb-base": "^11.3.2",
+    "eslint": "^4.6.1",
+    "eslint-config-airbnb-base": "^12.0.0",
     "eslint-plugin-import": "^2.7.0",
     "husky": "^0.14.3",
-    "lint-staged": "^4.0.4"
+    "lint-staged": "^4.1.3"
   }
 }
