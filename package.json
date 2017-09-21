@@ -1,7 +1,7 @@
 {
   "name": "@strt/bricks",
   "description": "Minimalistic build tool that just works",
-  "version": "1.7.7",
+  "version": "1.8.0",
   "author": "Strateg Marknadsföring AB <alexander.nanberg@strateg.se>",
   "license": "MIT",
   "engines": {
@@ -31,7 +31,7 @@
     "execa": "^0.8.0",
     "find-up": "^2.1.0",
     "friendly-errors-webpack-plugin": "^1.6.1",
-    "gulp": "gulpjs/gulp#4.0",
+    "gulp": "github:gulpjs/gulp#4.0",
     "gulp-autoprefixer": "^4.0.0",
     "gulp-if": "^2.0.2",
     "gulp-imagemin": "^3.3.0",
