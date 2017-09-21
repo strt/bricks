@@ -6,25 +6,21 @@ const chalk = require('chalk');
 const semver = require('semver');
 const pkg = require('../package.json');
 
-// Set .env variables
-require('dotenv').config();
-
 // Check node version
 if (!semver.satisfies(process.version, pkg.engines.node)) {
-  console.error(`${chalk.red('error')} Required node version ${pkg.engines.node} not satisfied with installed version ${process.version} \n`);
+  console.error(`${chalk.red`error`} Required node version ${pkg.engines.node} not satisfied with installed version ${process.version}. \n`);
   process.exit(0);
 }
 
 const defaultCommand = 'dev';
 const commands = new Set([
   'build',
-  'deploy',
   defaultCommand,
 ]);
 
 const cli = meow(`
   Usage
-    $ strt <command>
+    $ bricks <command>
 
   Commands
     ${Array.from(commands).join(', ')}
@@ -34,7 +30,7 @@ let cmd = cli.input[0];
 
 // Check if command exists
 if (cmd && !commands.has(cmd)) {
-  console.error(`${chalk.red('error')} Command "${cmd}" not found. For more information use the --help flag. \n`);
+  console.error(`${chalk.red`error`} Command "${cmd}" not found. For more information use the --help flag. \n`);
   process.exit(0);
 }
 
