@@ -1,29 +1,36 @@
 # Bricks
 
-> Minimal build tool that just works
+> Minimalistic build tool
 
-- [Getting started](#getting-started)
-- [User guide](#user-guide)
-  - [Available commands](#available-commands)
-  - [Configuration](#configuration)
-  - [Browser support](#browser-support)
-  - [Customize babel config](#customize-babel-config)
-  - [Options](#options)
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- https://github.com/thlorenz/doctoc -->
 
-## Getting started
+- [Setup](#setup)
+- [Commands](#commands)
+- [Configuration](#configuration)
+  - [Directories](#directories)
+  - [Styles](#styles)
+  - [Scripts](#scripts)
+  - [BrowserSync](#browsersync)
+  - [Browsers](#browsers)
+  - [Babel](#babel)
 
-Add Bricks as a devDependency
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Setup
+
+Install it
 ```bash
 $ yarn add --dev @strt/bricks
 # or
-$ npm install --dev @strt/bricks
+$ npm install --only=dev @strt/bricks 
 ```
 
-Add Bricks as npm scripts
-```js
+and add scripts to your `package.json` 
+```javascript
 // package.json
 {
-  ...
   "scripts": {
     "dev": "bricks",
     "build": "bricks build"
@@ -31,148 +38,100 @@ Add Bricks as npm scripts
 }
 ```
 
-Or run directly with `npx`
-```
-$ npx bricks
-```
-
-## User guide
-
-### Available commands
+## Commands
 - `bricks` Builds the project for development 
 - `bricks build` Builds the project for production (minifies scripts, optimizes images etc)
 
-### Configuration
-You can define your options in your `package.json` or in a `bricks.config.js` file in the root of your project. 
+## Configuration
+For custom configuration, create a `bricks.config.js` file in the root of your project directory. 
 
-```js
+```javascript
+// bricks.config.js
+module.exports = {
+  // Config options
+}
+```
+
+Alternatively you can add the configuration in your `package.json`
+```json
 // package.json
-{ 
-  ...
+{
   "bricks": {
-    // Config options here
+    // Config options
   }
 }
 ```
 
-```js
-// bricks.config.js
-module.exports = {
-  // Config options here
-}
-```
-
-### Browser support
-To customize which browsers you want autoprefixer to prefix simple add a [browserslist](https://github.com/ai/browserslist) property to your `package.json`.
-
-```js
+### Directories
+```javascript
 {
-  ...
-  "browserslist": [
-    "ie 11",
-    "last 2 versions"
-  ]
+  source: 'source',
+  output: 'dist',
 }
 ```
 
-### Customize babel config
-Add a `.babelrc` to the root of your project. Bricks will find it and merge it with the built-in babel config. 
+### Styles
+```javascript
+{
+  styles: {
+    path: 'styles',
+    entries: ['./main.scss'],
+  }
+}
+```
 
-Here is an example of a `.babelrc` file:
-```js
+### Scripts
+Check Webpacks documentation for [publicPath](https://webpack.js.org/guides/public-path/)
+```javascript
+{
+  scripts: {
+    path: 'scripts',
+    entries: ['./main.js'],
+    publicPath: '', 
+  }
+}
+```
+
+With named multiple or named enties
+```javascript
+{
+  scripts: {
+    entries: {
+      main: './main.js',
+      polyfills: './polyfills.js',
+    },
+  }
+}
+```
+
+### BrowserSync
+All options are sent forwarded directly to [BrowserSync](https://www.browsersync.io/docs/options)
+```javascript
+{
+  serve: {
+    proxy: 'strateg.se',
+    serveStatic: [
+      {
+        route: '/webdav/files/resources',
+        dir: 'dist'
+      }
+    ]
+  }
+}
+```
+
+### Browsers
+To customize which browsers you want autoprefixer to prefix. Add a [browserslist](https://github.com/ai/browserslist) property to your `package.json`.
+
+### Babel
+Add a `.babelrc` to your project root directory. Bricks will merge it with the built-in babel config. 
+
+```json
+// .babelrc
 {
   "presets": ["@strt/bricks/babel"],
   "plugins": [
     "transform-decorators-legacy"
   ]
 }
-``` 
-
-### Options
-
-#### Source
-Path to the source folder
-
-<details>
-  <summary>Example</summary>
-
-  ```js
-  {
-    ...
-    source: 'src'
-  }
-  ```
-</details>
-
-#### Output
-Path to the dist folder
-
-<details>
-  <summary>Example</summary>
-
-  ```js
-  {
-    ...
-    output: 'src'
-  }
-  ```
-</details>
-
-#### Styles
-Styles configuration
-
-<details>
-  <summary>Example</summary>
-
-  ```js
-  {
-    ...
-    styles: {
-      path: 'styles',
-      entries: ['./main.scss'],
-    }
-  }
-  ```
-</details>
-
-#### Scipts
-Scripts configuration
-
-<details>
-  <summary>Example</summary>
-
-  ```js
-  {
-    ...
-    styles: {
-      path: 'scripts',
-      entries: ['./main.js'],
-      publicPath: '',
-
-    }
-  }
-  ```
-</details>
-
-#### Serve
-All options are sent directly to [BrowserSync](https://www.browsersync.io/docs/options)
-
-<details>
-  <summary>Example</summary>
-
-  ```js
-  {
-    ...
-    serve: {
-      proxy: 'strateg.se',
-      serveStatic: [
-        {
-          route: '/webdav/files/resources',
-          dir: 'dist'
-        }
-      ]
-    }
-  }
-  ```
-</details>
-
+```
