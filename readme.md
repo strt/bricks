@@ -53,7 +53,7 @@ module.exports = {
 ```
 
 Alternatively you can add the configuration in your `package.json`
-```json
+```javascript
 // package.json
 {
   "bricks": {
