@@ -1,6 +1,5 @@
 #!/usr/bin/env node
-const runGulp = require('../lib/utils/runGulp');
-
 process.env.NODE_ENV = 'production';
+const runGulp = require('../lib/utils/runGulp');
 
 runGulp();
