@@ -5,7 +5,6 @@ const meow = require('meow');
 const chalk = require('chalk');
 const semver = require('semver');
 const pkg = require('../package.json');
-const startTaskRunner = require('../utils/startTaskRunner');
 
 // Check node version
 if (!semver.satisfies(process.version, pkg.engines.node)) {
@@ -44,7 +43,7 @@ if (!commands.has(cmd)) {
 const defaultEnv = cmd === 'dev' ? 'development' : 'production';
 process.env.NODE_ENV = process.env.NODE_ENV || defaultEnv;
 
-startTaskRunner();
+require('../utils/startTaskRunner')();
 
 // const bin = path.join(__dirname, `bricks-${cmd}`);
 
