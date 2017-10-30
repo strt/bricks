@@ -1,5 +1,2 @@
 #!/usr/bin/env node
-process.env.NODE_ENV = 'production';
-const runGulp = require('../lib/utils/runGulp');
-
-runGulp();
+require('../utils/startTaskRunner')();

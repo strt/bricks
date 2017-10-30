@@ -5,7 +5,7 @@ const plumber = require('gulp-plumber');
 const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
 const { stream } = require('browser-sync');
-const config = require('../config');
+const config = require('../lib/config');
 const errorHandler = require('../utils/errorHandler');
 
 module.exports = function styles() {

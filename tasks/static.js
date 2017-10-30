@@ -1,6 +1,6 @@
 const gulp = require('gulp');
-const config = require('../config');
-const constants = require('../constants');
+const config = require('../lib/config');
+const constants = require('../lib/constants');
 
 module.exports = function files() {
   return gulp.src(constants.STATIC_GLOB)

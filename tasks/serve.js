@@ -3,9 +3,9 @@ const webpack = require('webpack');
 const webpackDevMiddlweare = require('webpack-dev-middleware');
 const compress = require('compression');
 const browserSync = require('browser-sync');
-const config = require('../config');
-const webpackConfig = require('../webpack.config');
-const constants = require('../constants');
+const config = require('../lib/config');
+const webpackConfig = require('../lib/webpack.config');
+const constants = require('../lib/constants');
 
 module.exports = function serve(done) {
   const tasks = require('../utils/getTasks'); // eslint-disable-line global-require

@@ -1,5 +1,5 @@
 const del = require('del');
-const config = require('../config');
+const config = require('../lib/config');
 
 module.exports = function clean() {
   return del([

@@ -2,7 +2,7 @@ const path = require('path');
 const gulp = require('gulp');
 const gulpif = require('gulp-if');
 const imagemin = require('gulp-imagemin');
-const config = require('../config');
+const config = require('../lib/config');
 
 module.exports = function images() {
   const debug = process.env.NODE_ENV !== 'production';

@@ -1,10 +1,11 @@
 #!/usr/bin/env node
-const path = require('path');
+// const path = require('path');
 const meow = require('meow');
-const execa = require('execa');
+// const execa = require('execa');
 const chalk = require('chalk');
 const semver = require('semver');
 const pkg = require('../package.json');
+const startTaskRunner = require('../utils/startTaskRunner');
 
 // Check node version
 if (!semver.satisfies(process.version, pkg.engines.node)) {
@@ -39,6 +40,12 @@ if (!commands.has(cmd)) {
   cmd = defaultCommand;
 }
 
-const bin = path.join(__dirname, `bricks-${cmd}`);
+// Set env
+const defaultEnv = cmd === 'dev' ? 'development' : 'production';
+process.env.NODE_ENV = process.env.NODE_ENV || defaultEnv;
 
-execa(bin, { stdio: 'inherit' });
+startTaskRunner();
+
+// const bin = path.join(__dirname, `bricks-${cmd}`);
+
+// execa(bin, { stdio: 'inherit' });
