@@ -1,9 +1,10 @@
 const path = require('path');
 const webpack = require('webpack');
-const config = require('./config');
-const getBabelConfig = require('../utils/getBabelConfig');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
-const babelPresetBricks = require('./babel-preset');
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+const getBabelConfig = require('../utils/getBabelConfig');
+const config = require('./index');
+const babelPreset = require('./babel-preset');
 
 const isDev = process.env.NODE_ENV !== 'production';
 
@@ -11,6 +12,7 @@ const plugins = [
   new webpack.EnvironmentPlugin({ NODE_ENV: 'development' }),
   new webpack.NamedModulesPlugin(),
   new FriendlyErrorsPlugin(),
+  new CaseSensitivePathsPlugin(),
 ];
 
 if (!isDev) {
@@ -26,7 +28,7 @@ if (!isDev) {
   );
 }
 
-let webpackConfig = {
+const baseWebpackConfig = {
   plugins,
   entry: config.scripts.entries,
   output: {
@@ -50,7 +52,7 @@ let webpackConfig = {
           {
             cacheDirectory: true,
           },
-          babelPresetBricks,
+          babelPreset,
           getBabelConfig(config.source),
         ),
       },
@@ -63,8 +65,12 @@ let webpackConfig = {
   },
 };
 
-if (config.webpackConfig) {
-  webpackConfig = config.webpackConfig(webpackConfig, { isDev });
+function withUserConfig(conf) {
+  if (config.webpackConfig) {
+    return config.webpackConfig(conf, { isDev });
+  }
+
+  return conf;
 }
 
-module.exports = webpackConfig;
+module.exports = withUserConfig(baseWebpackConfig);

@@ -3,7 +3,7 @@ const chalk = require('chalk');
 const prettyTime = require('pretty-hrtime');
 const log = require('./log');
 // const logEvents = require('gulp-cli/lib/versioned/^4.0.0/log/events');
-require('../lib/gulpfile');
+require('../config/gulpfile');
 
 // logEvents(gulp);
 

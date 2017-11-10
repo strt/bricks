@@ -3,7 +3,7 @@ const gulp = require('gulp');
 const plumber = require('gulp-plumber');
 const sprite = require('gulp-svg-sprite');
 const errorHandler = require('../utils/errorHandler');
-const config = require('../lib/config');
+const config = require('../config');
 
 module.exports = function icons() {
   const src = path.join(config.source, config.icons.path, '**/**.svg');

@@ -7,7 +7,7 @@ const findUp = require('find-up');
 const timestamp = require('../utils/timestamp');
 const log = require('../utils/log');
 
-const defaultConfig = {
+const baseConfig = {
   source: 'src',
   output: 'dist',
   images: {
@@ -47,7 +47,7 @@ const defaultConfig = {
 function withDefaults(...configs) {
   return deepmerge.all(
     [
-      defaultConfig,
+      baseConfig,
       ...configs,
     ],
     { arrayMerge: (dest, src) => src },
@@ -89,7 +89,7 @@ function loadConfig() {
   let userConfig = {};
 
   if (pkg.browserslist) {
-    defaultConfig.browserslist = undefined;
+    baseConfig.browserslist = undefined;
   }
 
   if (userConfigPath) {
