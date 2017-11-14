@@ -1,6 +1,7 @@
 const path = require('path');
 const gulp = require('gulp');
-const autoprefixer = require('gulp-autoprefixer');
+const postcss = require('gulp-postcss');
+const autoprefixer = require('autoprefixer');
 const plumber = require('gulp-plumber');
 const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
@@ -23,9 +24,12 @@ module.exports = function styles() {
       outputStyle: 'compressed',
       includePaths: path.join('node_modules'),
     }))
-    .pipe(autoprefixer({
-      browsers: config.browserslist,
-    }))
+    .pipe(postcss([
+      autoprefixer({
+        browsers: config.browserslist,
+      }),
+      ...config.styles.postcssPlugins,
+    ]))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(dest))
     .pipe(stream());

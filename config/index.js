@@ -19,6 +19,7 @@ const baseConfig = {
   styles: {
     path: 'styles',
     entries: ['./main.scss'],
+    postcssPlugins: [],
   },
   scripts: {
     path: 'scripts',
