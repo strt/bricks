@@ -1,19 +1,13 @@
 {
   "name": "@strt/bricks",
   "description": "Minimalistic build tool",
-  "version": "1.12.2",
+  "version": "1.12.3",
   "author": "Strateg Marknadsföring AB <alexander.nanberg@strateg.se>",
   "license": "MIT",
   "engines": {
     "node": ">=8"
   },
-  "files": [
-    "bin",
-    "config",
-    "tasks",
-    "utils",
-    "babel.js"
-  ],
+  "files": ["bin", "config", "tasks", "utils", "babel.js"],
   "bin": {
     "bricks": "./bin/bricks"
   },
