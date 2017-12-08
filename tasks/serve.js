@@ -16,9 +16,7 @@ module.exports = function serve(done) {
     browserSync.reload();
   });
 
-  const middleware = [
-    compress(),
-  ];
+  const middleware = [compress()];
 
   if (useWebpackMiddleware) {
     middleware.push(webpackDevMiddlweare(bundler, {
@@ -27,10 +25,7 @@ module.exports = function serve(done) {
     }));
   }
 
-  browserSync(Object.assign(
-    { middleware },
-    config.serve,
-  ));
+  browserSync(Object.assign({ middleware }, config.serve));
 
   if (!useWebpackMiddleware) {
     gulp.watch(`${config.source}/${config.scripts.path}/**`, tasks.scripts);
@@ -39,7 +34,7 @@ module.exports = function serve(done) {
   gulp.watch(`${config.source}/${config.styles.path}/**`, tasks.styles);
   gulp.watch(`${config.source}/${config.icons.path}/**`, tasks.icons);
   gulp.watch(`${config.source}/${config.images.path}/**`, tasks.images);
-  gulp.watch(constants.STATIC_GLOB, tasks.files);
+  gulp.watch(constants.STATIC_GLOB, tasks.static);
 
   done();
 };
