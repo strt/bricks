@@ -12,7 +12,7 @@
     "bricks": "./bin/bricks"
   },
   "dependencies": {
-    "autoprefixer": "^7.2.2",
+    "autoprefixer": "^7.2.3",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
@@ -46,11 +46,11 @@
     "semver": "^5.4.1",
     "time-stamp": "^2.0.0",
     "webpack": "^3.10.0",
-    "webpack-dev-middleware": "^1.12.2"
+    "webpack-dev-middleware": "^2.0.1"
   },
   "devDependencies": {
     "babel-eslint": "^8.0.3",
-    "eslint": "^4.12.1",
+    "eslint": "^4.13.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
     "husky": "^0.14.3",

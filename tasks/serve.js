@@ -21,7 +21,7 @@ module.exports = function serve(done) {
   if (useWebpackMiddleware) {
     middleware.push(webpackDevMiddlweare(bundler, {
       publicPath: webpackConfig.output.publicPath,
-      quiet: true,
+      logLevel: 'silent',
     }));
   }
 
