@@ -1,7 +1,7 @@
 {
   "name": "@strt/bricks",
   "description": "Minimalistic build tool",
-  "version": "1.12.3",
+  "version": "1.12.5",
   "author": "Strateg Marknadsföring AB <alexander.nanberg@strateg.se>",
   "license": "MIT",
   "engines": {
