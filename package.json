@@ -1,7 +1,7 @@
 {
   "name": "@strt/bricks",
   "description": "Minimalistic build tool",
-  "version": "1.12.5",
+  "version": "1.12.6",
   "author": "Strateg Marknadsföring AB <alexander.nanberg@strateg.se>",
   "license": "MIT",
   "engines": {
@@ -21,7 +21,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-env": "^1.6.1",
-    "browser-sync": "^2.18.13",
+    "browser-sync": "^2.21.0",
     "case-sensitive-paths-webpack-plugin": "^2.1.1",
     "chalk": "^2.3.0",
     "compression": "^1.7.1",
@@ -46,7 +46,7 @@
     "semver": "^5.4.1",
     "time-stamp": "^2.0.0",
     "webpack": "^3.10.0",
-    "webpack-dev-middleware": "^2.0.1"
+    "webpack-dev-middleware": "^2.0.2"
   },
   "devDependencies": {
     "babel-eslint": "^8.0.3",
