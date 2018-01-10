@@ -1,13 +1,19 @@
 {
   "name": "@strt/bricks",
   "description": "Minimalistic build tool",
-  "version": "1.12.7",
+  "version": "1.12.8",
   "author": "Strateg Marknadsföring AB <alexander.nanberg@strateg.se>",
   "license": "MIT",
   "engines": {
     "node": ">=8"
   },
-  "files": ["bin", "config", "tasks", "utils", "babel.js"],
+  "files": [
+    "bin",
+    "config",
+    "tasks",
+    "utils",
+    "babel.js"
+  ],
   "bin": {
     "bricks": "./bin/bricks"
   },
@@ -30,7 +36,7 @@
     "execa": "^0.8.0",
     "find-up": "^2.1.0",
     "friendly-errors-webpack-plugin": "^1.6.1",
-    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp": "^4.0.0",
     "gulp-if": "^2.0.2",
     "gulp-imagemin": "^4.1.0",
     "gulp-plumber": "^1.2.0",
