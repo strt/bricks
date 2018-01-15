@@ -9,7 +9,8 @@ module.exports = function icons() {
   const src = path.join(config.source, config.icons.path, '**/**.svg');
   const dest = path.join(config.output, config.icons.path);
 
-  return gulp.src(src)
+  return gulp
+    .src(src)
     .pipe(plumber({
       errorHandler,
     }))

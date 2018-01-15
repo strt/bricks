@@ -3,8 +3,8 @@ const webpack = require('webpack');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const getBabelConfig = require('../utils/getBabelConfig');
-const config = require('./index');
 const babelPreset = require('./babel-preset');
+const config = require('./index');
 
 const isDev = process.env.NODE_ENV !== 'production';
 
@@ -15,7 +15,12 @@ const plugins = [
   new CaseSensitivePathsPlugin(),
 ];
 
-if (!isDev) {
+if (isDev) {
+  plugins.push(
+    new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+  );
+} else {
   plugins.push(
     new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.optimize.UglifyJsPlugin({

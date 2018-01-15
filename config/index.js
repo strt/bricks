@@ -46,13 +46,9 @@ const baseConfig = {
 };
 
 function withDefaults(...configs) {
-  return deepmerge.all(
-    [
-      baseConfig,
-      ...configs,
-    ],
-    { arrayMerge: (dest, src) => src },
-  );
+  return deepmerge.all([baseConfig, ...configs], {
+    arrayMerge: (dest, src) => src,
+  });
 }
 
 function withValidation(config) {
@@ -60,23 +56,34 @@ function withValidation(config) {
 
   try {
     const sourceDir = path.join(cwd, config.source);
+
     // Check source directory
     if (!fs.existsSync(sourceDir)) {
-      throw new Error(`Directory "${config.source}" was not found in "${process.cwd()}". Fix your "source" path`);
+      throw new Error(`Directory "${
+        config.source
+      }" was not found in "${process.cwd()}". Make sure your "source" property points to a directory.`);
     }
 
     // Check styles directory
     if (!fs.existsSync(path.join(sourceDir, config.styles.path))) {
-      throw new Error(`Directory "${config.styles.path}" was not found in "${sourceDir}". Fix your "styles.path" path`);
+      throw new Error(`Directory "${
+        config.styles.path
+      }" was not found in "${sourceDir}". Make sure your "styles.path" property points to a directory.`);
     }
 
     // Check scripts directory
     if (!fs.existsSync(path.join(sourceDir, config.scripts.path))) {
-      throw new Error(`Directory "${config.scripts.path}" was not found in "${sourceDir}". Fix your "scripts.path" path`);
+      throw new Error(`Directory "${
+        config.scripts.path
+      }" was not found in "${sourceDir}". Make sure your "scripts.path" property points to a directory.`);
     }
+
+    // TODO: Check all entries
   } catch (error) {
-    const msg = chalk`${error.message}\n\nDocumentation available here: {whiteBright https://github.com/strt/bricks#configuration}`;
-    log.error('Invalid configuration', msg);
+    const msg = chalk`${
+      error.message
+    }\n\nDocumentation available here: {blue https://github.com/strt/bricks#configuration}`;
+    log.error('Invalid configuration object', msg);
     process.exit(1);
   }
 

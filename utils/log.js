@@ -1,8 +1,18 @@
 const chalk = require('chalk');
 const timestamp = require('./timestamp');
 
+function log(title, message) {
+  let string = `\n${title}`;
+
+  if (message) {
+    string += `\n\n${message}`;
+  }
+
+  console.log(string);
+}
+
 function error(title, message = '') {
-  console.log(`\n${chalk.bgRed.black(' ERROR ')} ${chalk.red(title)}\n\n${message}`);
+  log(`${chalk.bgRed.black(' ERROR ')} ${chalk.red(title)}`, message);
 }
 
 function warn(title, message) {

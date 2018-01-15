@@ -13,7 +13,8 @@ module.exports = function styles() {
   const cwd = path.join(config.source, config.styles.path);
   const dest = path.join(config.output, config.styles.path);
 
-  return gulp.src(config.styles.entries, { cwd })
+  return gulp
+    .src(config.styles.entries, { cwd })
     .pipe(plumber({
       errorHandler,
     }))
