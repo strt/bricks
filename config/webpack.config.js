@@ -40,7 +40,7 @@ const baseWebpackConfig = {
     path: path.resolve(config.output, config.scripts.path),
     publicPath: config.scripts.publicPath,
     filename: '[name].js',
-    chunkFilename: '[name].js',
+    chunkFilename: 'chunks/[name].js',
   },
   context: path.resolve(config.source, config.scripts.path),
   devtool: isDev ? 'cheap-module-inline-source-map' : 'source-map',
