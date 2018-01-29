@@ -5,7 +5,6 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-<!-- https://github.com/thlorenz/doctoc -->
 
 - [Setup](#setup)
 - [Commands](#commands)
@@ -14,7 +13,7 @@
   - [Styles](#styles)
   - [Scripts](#scripts)
   - [BrowserSync](#browsersync)
-  - [Browsers](#browsers)
+  - [Autoprefixer](#autoprefixer)
   - [Babel](#babel)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -25,12 +24,11 @@ Install it
 ```bash
 $ yarn add --dev @strt/bricks
 # or
-$ npm install --only=dev @strt/bricks 
+$ npm install --D @strt/bricks 
 ```
 
-and add scripts to your `package.json` 
-```javascript
-// package.json
+and add these scripts to your `package.json` 
+```json
 {
   "scripts": {
     "dev": "bricks",
@@ -47,18 +45,16 @@ and add scripts to your `package.json`
 For custom configuration, create a `bricks.config.js` file in the root of your project directory. 
 
 ```javascript
-// bricks.config.js
 module.exports = {
-  // Config options
+  // Your options
 }
 ```
 
-Alternatively you can add the configuration in your `package.json`
+Alternatively you can add the configuration in your `package.json`.
 ```javascript
-// package.json
 {
   "bricks": {
-    // Config options
+    // Your options
   }
 }
 ```
@@ -82,7 +78,6 @@ Alternatively you can add the configuration in your `package.json`
 ```
 
 ### Scripts
-Check Webpacks documentation for [publicPath](https://webpack.js.org/guides/public-path/)
 ```javascript
 {
   scripts: {
@@ -93,12 +88,12 @@ Check Webpacks documentation for [publicPath](https://webpack.js.org/guides/publ
 }
 ```
 
-With named multiple or named enties
+With named multiple or named entries
 ```javascript
 {
   scripts: {
     entries: {
-      main: './main.js',
+      app: './main.js',
       polyfills: './polyfills.js',
     },
   }
@@ -121,11 +116,11 @@ All options are sent forwarded directly to [BrowserSync](https://www.browsersync
 }
 ```
 
-### Browsers
-To customize which browsers you want autoprefixer to prefix. Add a [browserslist](https://github.com/ai/browserslist) property to your `package.json`.
+### Autoprefixer
+Add a [browserslist](https://github.com/ai/browserslist) property to your `package.json`.
 
 ### Babel
-Add a `.babelrc` to your project root directory. Bricks will merge it with the built-in babel config. 
+Add a `.babelrc` to your project root directory and add `@strt/bricks/babel` as a preset. 
 
 ```json
 // .babelrc
