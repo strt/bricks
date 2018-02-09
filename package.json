@@ -1,7 +1,7 @@
 {
   "name": "@strt/bricks",
   "description": "Minimalistic build tool",
-  "version": "1.13.0",
+  "version": "1.13.1",
   "author": "Strateg Marknadsföring AB <alexander.nanberg@strateg.se>",
   "license": "MIT",
   "engines": {
@@ -48,10 +48,9 @@
     "meow": "^4.0.0",
     "pretty-hrtime": "^1.0.3",
     "read-pkg-up": "^3.0.0",
-    "require-dir": "^0.3.2",
+    "require-dir": "^1.0.0",
     "semver": "^5.5.0",
     "time-stamp": "^2.0.0",
-    "uglifyjs-webpack-plugin": "^1.1.6",
     "webpack": "^3.10.0",
     "webpack-dev-middleware": "^2.0.4"
   },
