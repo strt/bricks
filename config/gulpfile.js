@@ -15,6 +15,6 @@ gulp.task(
       tasks.styles,
       ...(!isDev || config.scripts.publicPath === '' ? [tasks.scripts] : []),
     ),
-    ...(isDev ? [tasks.serve] : []),
+    ...(isDev ? [tasks.serve] : [tasks.sizes]),
   ),
 );
