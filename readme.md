@@ -20,14 +20,14 @@
 
 ## Setup
 
-Install it
+Install
 ```bash
 $ yarn add -D @strt/bricks
 # or
 $ npm install --D @strt/bricks 
 ```
 
-and add these scripts to your `package.json` 
+Add scripts to your `package.json` 
 ```json
 {
   "scripts": {
@@ -114,7 +114,6 @@ Add a [browserslist](https://github.com/ai/browserslist) property to your `packa
 Add a `.babelrc` to your project root directory and add `@strt/bricks/babel` as a preset. 
 
 ```json
-// .babelrc
 {
   "presets": ["@strt/bricks/babel"],
   "plugins": [
