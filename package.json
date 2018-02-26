@@ -4,6 +4,7 @@
   "version": "2.0.0-alpha.0",
   "author": "Strateg Marknadsföring AB <alexander.nanberg@strateg.se>",
   "license": "MIT",
+  "repository": "github:strt/bricks",
   "engines": {
     "node": ">=8"
   },
