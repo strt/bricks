@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+
+'use strict';
+
 // const path = require('path');
 // const execa = require('execa');
 const meow = require('meow');
@@ -8,9 +11,11 @@ const log = require('../utils/log');
 
 // Check node version
 if (!semver.satisfies(process.version, pkg.engines.node)) {
-  log.error(`Required node version ${
-    pkg.engines.node
-  } not satisfied with current version ${process.version}`);
+  log.error(
+    `Required node version ${
+      pkg.engines.node
+    } not satisfied with current version ${process.version}`,
+  );
   process.exit(0);
 }
 
@@ -27,18 +32,17 @@ const cli = meow(`
 
 let cmd = cli.input[0];
 
-// Check if command exists
 if (cmd && !commands.has(cmd)) {
-  log.error(`Command "${cmd}" not found. To see available commands use the --help flag.`);
+  log.error(
+    `Command "${cmd}" not found. To see available commands use the --help flag.`,
+  );
   process.exit(0);
 }
 
-// Use default command if none is given
 if (!commands.has(cmd)) {
   cmd = defaultCommand;
 }
 
-// Set env
 const defaultEnv = cmd === 'dev' ? 'development' : 'production';
 process.env.NODE_ENV = process.env.NODE_ENV || defaultEnv;
 
@@ -46,4 +50,4 @@ require('../utils/startTaskRunner')();
 
 // const bin = path.join(__dirname, `bricks-${cmd}`);
 
-// execa(bin, { stdio: 'inherit' });
+// execa(path.join(__dirname, `bricks-${cmd}`), { stdio: 'inherit' });

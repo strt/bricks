@@ -5,6 +5,7 @@
     "node": true
   },
   "rules": {
+    "strict": 0,
     "max-len": "off",
     "no-console": 0
   }

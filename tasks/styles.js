@@ -10,11 +10,8 @@ const config = require('../config');
 const errorHandler = require('../utils/errorHandler');
 
 module.exports = function styles() {
-  const cwd = path.join(config.source, config.styles.path);
-  const dest = path.join(config.output, config.styles.path);
-
   return gulp
-    .src(config.styles.entries, { cwd })
+    .src(config.styles.entries)
     .pipe(plumber({
       errorHandler,
     }))
@@ -32,6 +29,6 @@ module.exports = function styles() {
       ...config.styles.postcssPlugins,
     ]))
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(dest))
+    .pipe(gulp.dest(path.join(config.output, config.styles.path)))
     .pipe(stream());
 };

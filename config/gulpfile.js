@@ -9,7 +9,7 @@ gulp.task(
   gulp.series(
     tasks.clean,
     gulp.parallel(
-      tasks.static,
+      tasks.files,
       tasks.images,
       tasks.icons,
       tasks.styles,
