@@ -7,7 +7,6 @@ const babelPreset = require('./babel-preset');
 const config = require('./index');
 
 const isDev = process.env.NODE_ENV === 'development';
-
 const plugins = [new CaseSensitivePathsPlugin()];
 
 if (isDev) {
@@ -17,8 +16,8 @@ if (isDev) {
   );
 }
 
-const baseWebpackConfig = {
-  mode: 'production',
+let webpackConfig = {
+  mode: isDev ? 'development' : 'production',
   devtool: isDev ? 'cheap-module-inline-source-map' : 'source-map',
   context: path.resolve(config.source, config.scripts.path),
   entry: config.scripts.entries,
@@ -30,7 +29,7 @@ const baseWebpackConfig = {
   },
   plugins,
   performance: {
-    hints: !isDev,
+    hints: isDev ? false : 'warning',
   },
   module: {
     strictExportPresence: true,
@@ -50,12 +49,8 @@ const baseWebpackConfig = {
   },
 };
 
-function withUserConfig(conf) {
-  if (config.webpackConfig) {
-    return config.webpackConfig(conf, isDev);
-  }
-
-  return conf;
+if (typeof config.webpack === 'function') {
+  webpackConfig = config.webpack(webpackConfig, isDev);
 }
 
-module.exports = withUserConfig(baseWebpackConfig);
+module.exports = webpackConfig;
