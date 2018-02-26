@@ -116,8 +116,6 @@ Add a `.babelrc` to your project root directory and add `@strt/bricks/babel` as 
 ```json
 {
   "presets": ["@strt/bricks/babel"],
-  "plugins": [
-    "transform-decorators-legacy"
-  ]
+  "plugins": []
 }
 ```
