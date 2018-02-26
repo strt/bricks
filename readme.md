@@ -22,7 +22,7 @@
 
 Install it
 ```bash
-$ yarn add --dev @strt/bricks
+$ yarn add -D @strt/bricks
 # or
 $ npm install --D @strt/bricks 
 ```
@@ -47,15 +47,6 @@ For custom configuration, create a `bricks.config.js` file in the root of your p
 ```javascript
 module.exports = {
   // Your options
-}
-```
-
-Alternatively you can add the configuration in your `package.json`.
-```javascript
-{
-  "bricks": {
-    // Your options
-  }
 }
 ```
 
@@ -104,7 +95,7 @@ With named multiple or named entries
 All options are sent forwarded directly to [BrowserSync](https://www.browsersync.io/docs/options)
 ```javascript
 {
-  serve: {
+  browserSync: {
     proxy: 'strateg.se',
     serveStatic: [
       {
