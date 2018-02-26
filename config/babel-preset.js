@@ -10,7 +10,6 @@ module.exports = {
     'react',
   ],
   plugins: [
-    'transform-decorators-legacy',
     'transform-class-properties',
     ['transform-object-rest-spread', { useBuiltIns: true }],
     'syntax-dynamic-import',
