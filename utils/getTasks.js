@@ -1,3 +1,1 @@
-const tasks = require('require-dir')('../tasks');
-
-module.exports = tasks;
+module.exports = require('require-dir')('../tasks');

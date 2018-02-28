@@ -39,7 +39,7 @@ module.exports = function serve(done) {
   gulp.watch(`${config.source}/${config.styles.path}/**`, tasks.styles);
   gulp.watch(`${config.source}/${config.icons.path}/**`, tasks.icons);
   gulp.watch(`${config.source}/${config.images.path}/**`, tasks.images);
-  gulp.watch(config.getFilesGlob(config), tasks.static);
+  gulp.watch(config.files(config), tasks.static);
 
   done();
 };

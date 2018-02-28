@@ -1,14 +1,13 @@
 const chalk = require('chalk');
-const timestamp = require('./timestamp');
 
 function log(title, message) {
   let string = `\n${title}`;
 
   if (message) {
-    string += `\n\n${message}`;
+    string += `\n${message}`;
   }
 
-  console.log(string);
+  console.log(`${string}\n`);
 }
 
 function error(title, message = '') {
@@ -16,11 +15,15 @@ function error(title, message = '') {
 }
 
 function warn(title, message) {
-  console.log(`\n${chalk.bgYellow.black(' WARNING ')} ${chalk.yellow(title)}\n\n${message}`);
+  log(`${chalk.bgYellow.black(' WARNING ')} ${chalk.yellow(title)}`, message);
 }
 
-function gulp(message) {
-  console.log(`[${timestamp()}] ${message}`);
+function info(title, message) {
+  log(`${chalk.bgBlue.black(' INFO ')} ${chalk.blue(title)}`, message);
 }
 
-module.exports = { error, warn, gulp };
+module.exports = {
+  error,
+  warn,
+  info,
+};

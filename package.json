@@ -1,7 +1,7 @@
 {
   "name": "@strt/bricks",
   "description": "Minimalistic build tool",
-  "version": "2.0.0-alpha.2",
+  "version": "2.0.0-alpha.3",
   "author": "Strateg Marknadsföring AB <alexander.nanberg@strateg.se>",
   "license": "MIT",
   "repository": "github:strt/bricks",
@@ -11,6 +11,7 @@
   "files": [
     "bin",
     "config",
+    "scripts",
     "tasks",
     "utils",
     "babel.js"
@@ -51,7 +52,7 @@
     "require-dir": "^1.0.0",
     "semver": "^5.5.0",
     "time-stamp": "^2.0.0",
-    "webpack": "^4.0.0",
+    "webpack": "^4.0.1",
     "webpack-dev-middleware": "^2.0.6",
     "webpack-hot-middleware": "^2.21.0"
   },
