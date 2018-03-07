@@ -2,7 +2,7 @@ const gulp = require('gulp');
 const tasks = require('../utils/getTasks');
 const config = require('./');
 
-const isDev = process.env.NODE_ENV !== 'production';
+const isDev = process.env.NODE_ENV === 'development';
 
 gulp.task(
   'default',

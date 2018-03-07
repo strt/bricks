@@ -22,8 +22,8 @@ const defaultConfig = {
   },
   scripts: {
     path: 'scripts',
-    publicPath: '',
     entries: ['./main.js'],
+    publicPath: '',
   },
   files(config = this) {
     return [
