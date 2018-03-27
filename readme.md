@@ -1,7 +1,9 @@
 # Bricks
-> Minimalistic build tool
+> A zero-configuration toolkit for building modern web apps 
 
-[![npm version](https://badge.fury.io/js/%40strt%2Fbricks.svg)](https://badge.fury.io/js/%40strt%2Fbricks)
+[![npm](https://img.shields.io/npm/v/@strt/bricks.svg)](https://www.npmjs.com/package/@strt/bricks) 
+[![npm](https://img.shields.io/npm/dm/@strt/bricks.svg)](https://www.npmjs.com/package/@strt/bricks)
+
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
