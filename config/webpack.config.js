@@ -4,7 +4,7 @@ const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const getBabelConfig = require('../utils/getBabelConfig');
 const babelPreset = require('./babel-preset');
-const config = require('./index');
+const config = require('./config');
 
 const isDev = process.env.NODE_ENV === 'development';
 const plugins = [new CaseSensitivePathsPlugin()];
@@ -18,18 +18,18 @@ if (isDev) {
 
 let webpackConfig = {
   mode: isDev ? 'development' : 'production',
-  devtool: isDev ? 'cheap-module-inline-source-map' : 'source-map',
-  context: path.resolve(config.source, config.scripts.path),
+  devtool: isDev ? 'cheap-module-source-map' : 'source-map',
   entry: config.scripts.entries,
   output: {
-    path: path.resolve(config.output, config.scripts.path),
+    path: path.resolve(config.output),
     publicPath: config.scripts.publicPath,
-    filename: '[name].js',
-    chunkFilename: 'chunks/[name].js',
+    filename: `${config.scripts.path}/[name].js`,
+    chunkFilename: `${config.scripts.path}/chunks/[name].js`,
   },
   plugins,
-  performance: {
-    hints: isDev ? false : 'warning',
+  node: {
+    fs: 'empty',
+    process: false,
   },
   module: {
     strictExportPresence: true,
