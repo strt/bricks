@@ -1,7 +1,7 @@
 {
   "name": "@strt/bricks",
   "description": "Minimalistic build tool",
-  "version": "2.0.0-alpha.8",
+  "version": "2.0.0-alpha.9",
   "author": "Strateg Marknadsföring AB <alexander.nanberg@strateg.se>",
   "license": "MIT",
   "repository": "github:strt/bricks",
@@ -42,7 +42,7 @@
     "gulp-imagemin": "^4.1.0",
     "gulp-plumber": "^1.2.0",
     "gulp-postcss": "^7.0.1",
-    "gulp-sass": "^3.1.0",
+    "gulp-sass": "^3.2.1",
     "gulp-size": "^3.0.0",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-svg-sprite": "^1.4.0",
@@ -53,7 +53,7 @@
     "semver": "^5.5.0",
     "time-stamp": "^2.0.0",
     "webpack": "^4.2.0",
-    "webpack-dev-middleware": "^3.0.1",
+    "webpack-dev-middleware": "^3.1.0",
     "webpack-hot-middleware": "^2.21.2"
   },
   "devDependencies": {
