@@ -17,12 +17,12 @@ const defaultConfig = {
   },
   styles: {
     path: 'styles',
-    entries: ['./main.scss'],
+    entries: ['./app.scss'],
     postcssPlugins: [],
   },
   scripts: {
     path: 'scripts',
-    entries: ['./main.js'],
+    entries: ['./app.js'],
     publicPath: '',
   },
   files(config = this) {
