@@ -1,10 +1,16 @@
 {
   "name": "@strt/bricks",
-  "description": "Minimalistic build tool",
+  "description": "A zero-configuration toolkit for building modern web apps",
   "version": "2.0.0-alpha.9",
   "author": "Strateg Marknadsföring AB <alexander.nanberg@strateg.se>",
   "license": "MIT",
   "repository": "github:strt/bricks",
+  "keywords": [
+    "bricks",
+    "toolkit",
+    "0CJS",
+    "zero-configuration"
+  ],
   "engines": {
     "node": ">=8"
   },
