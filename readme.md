@@ -4,32 +4,36 @@
 [![npm](https://img.shields.io/npm/v/@strt/bricks.svg)](https://www.npmjs.com/package/@strt/bricks) 
 [![npm](https://img.shields.io/npm/dm/@strt/bricks.svg)](https://www.npmjs.com/package/@strt/bricks)
 
+Bricks is a dev-toolkit for developing modern web apps without the need of configuring `Webpack`, `Babel`, `gulp` etc. It comes with sane defaults but also allows for customization. 
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-- [Setup](#setup)
-- [Commands](#commands)
-- [Configuration](#configuration)
+## Contents
+- [Install](#install)
+- [Usage](#usage)
+- [Custom configuration](#custom-configuration)
   - [Directories](#directories)
   - [Styles](#styles)
   - [Scripts](#scripts)
   - [BrowserSync](#browsersync)
   - [Autoprefixer](#autoprefixer)
   - [Babel](#babel)
+- [FAQ](#faq)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-## Setup
-
-Install
+## Install
 ```bash
-$ yarn add -D @strt/bricks
-# or
-$ npm install --D @strt/bricks 
+$ npm install -D @strt/bricks
 ```
 
-Add scripts to your `package.json` 
+## Usage
+Bricks comes with these built in commands
+
+#### `bricks dev` 
+Builds the project for development.
+
+#### `bricks build` 
+Builds the project for production which minifies and optimizes assets. Sourcemaps are also generated.
+
+You can use them directly with npx, e.g. `npx bricks build`. But it's recommended to add them as scripts to your `package.json`
+
 ```json
 {
   "scripts": {
@@ -39,43 +43,43 @@ Add scripts to your `package.json`
 }
 ```
 
-## Commands
-- `bricks` Builds the project for development 
-- `bricks build` Builds the project for production (minifies scripts, optimizes images etc)
-
-## Configuration
-For custom configuration, create a `bricks.config.js` file in the root of your project directory. 
+## Custom configuration
+For custom advanced behavior of Bricks, you can create a `bricks.config.js` file in the root of your project directory. 
 
 ```javascript
+// bricks.config.js
 module.exports = {
-  // Your options
+  // Your custom configuration
 }
 ```
 
 ### Directories
 ```javascript
-{
-  source: 'source',
+// bricks.config.js
+module.exports = {
+  source: 'src',
   output: 'dist',
 }
 ```
 
 ### Styles
 ```javascript
-{
+// bricks.config.js
+module.exports = {
   styles: {
     path: 'styles',
-    entries: ['./main.scss'],
+    entries: ['./app.scss'],
   }
 }
 ```
 
 ### Scripts
 ```javascript
-{
+// bricks.config.js
+module.exports = {
   scripts: {
     path: 'scripts',
-    entries: ['./main.js'],
+    entries: ['./app.js'],
     publicPath: '', 
   }
 }
@@ -83,10 +87,11 @@ module.exports = {
 
 With named multiple or named entries
 ```javascript
-{
+// bricks.config.js
+module.exports = {
   scripts: {
     entries: {
-      app: './main.js',
+      app: './app.js',
       polyfills: './polyfills.js',
     },
   }
@@ -94,9 +99,11 @@ With named multiple or named entries
 ```
 
 ### BrowserSync
-All options are sent forwarded directly to [BrowserSync](https://www.browsersync.io/docs/options)
+To set a [BrowserSync](https://www.browsersync.io) configuration, add a `browserSync` property to the `bricks.config.js` file. The configuration will be forwarded directly to [BrowserSync](https://www.browsersync.io/docs/options).
+
 ```javascript
-{
+// bricks.config.js
+module.exports = {
   browserSync: {
     proxy: 'strateg.se',
     serveStatic: [
@@ -110,10 +117,16 @@ All options are sent forwarded directly to [BrowserSync](https://www.browsersync
 ```
 
 ### Autoprefixer
-Add a [browserslist](https://github.com/ai/browserslist) property to your `package.json`.
+To customize which browsers you want to target, add a [browserslist](https://github.com/ai/browserslist) property to your `package.json` and define which browsers you want to support. This affects both `autoprefixer` and `babel`.
+
+```json
+{
+  "browserslist": "last 2 versions, ie 11"
+}
+```
 
 ### Babel
-Add a `.babelrc` to your project root directory and add `@strt/bricks/babel` as a preset. 
+To extend the usage of `babel`, create a `.babelrc` in the root of your project directory. This file will overwrite the default babel config. You need to add the `@strt/bricks/babel` preset if you only want to extend the default config. 
 
 ```json
 {
@@ -121,3 +134,16 @@ Add a `.babelrc` to your project root directory and add `@strt/bricks/babel` as 
   "plugins": []
 }
 ```
+
+## FAQ
+<p>
+  <details>
+  <summary><b>Scripts not updating</b></summary>
+  <ul>
+    <li>Make sure that `scripts.publicPath` is set correctly.</li>
+  </ul>
+  </details>
+</p>
+
+## License
+MIT © [Strateg Marknadsföring](https://github.com/strt)
