@@ -1,8 +1,12 @@
 module.exports = {
-  presets: [['env', { modules: false }], 'react'],
+  presets: [
+    ['@babel/preset-env', { modules: false, targets: { browsers: ['ie 11'] } }],
+    ['@babel/preset-react', { useBuiltIns: true }],
+  ],
   plugins: [
-    'transform-class-properties',
-    ['transform-object-rest-spread', { useBuiltIns: true }],
-    'syntax-dynamic-import',
+    '@babel/plugin-proposal-transform-class-properties',
+    ['@babel/plugin-proposal-object-rest-spread', { useBuiltIns: true }],
+    '@babel/plugin-proposal-optional-chaining',
+    '@babel/plugin-syntax-dynamic-import',
   ],
 };
