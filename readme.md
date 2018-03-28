@@ -44,7 +44,7 @@ You can use them directly with npx, e.g. `npx bricks build`. But it's recommende
 ```
 
 ## Custom configuration
-For custom advanced behavior of Bricks, you can create a `bricks.config.js` file in the root of your project directory. 
+For custom advanced behavior of Bricks, create a `bricks.config.js` file in the root of your project directory. 
 
 ```javascript
 // bricks.config.js
