@@ -139,9 +139,7 @@ To extend the usage of `babel`, create a `.babelrc` in the root of your project 
 <p>
   <details>
   <summary><b>Scripts not updating</b></summary>
-  <ul>
-    <li>Make sure that `scripts.publicPath` is set correctly.</li>
-  </ul>
+  Make sure that the `scripts.publicPath` is set correctly.
   </details>
 </p>
 
