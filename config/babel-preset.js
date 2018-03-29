@@ -1,6 +1,12 @@
 module.exports = () => ({
   presets: [
-    ['@babel/preset-env', { modules: false }],
+    [
+      '@babel/preset-env',
+      {
+        modules: false,
+        useBuiltIns: 'entry',
+      },
+    ],
     ['@babel/preset-react', { useBuiltIns: true }],
   ],
   plugins: [
