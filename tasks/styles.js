@@ -26,7 +26,7 @@ module.exports = function styles() {
       autoprefixer({
         browsers: config.browserslist,
       }),
-      ...config.styles.postcssPlugins,
+      ...config.styles.plugins,
     ]))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(path.join(config.output, config.styles.path)))

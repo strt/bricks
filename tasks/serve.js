@@ -11,7 +11,7 @@ module.exports = function serve(done) {
   const tasks = require('../utils/getTasks'); // eslint-disable-line global-require
 
   const compiler = webpack(webpackConfig);
-  const useWebpackMiddleware = config.scripts.publicPath !== '';
+  const useWebpackMiddleware = config.publicPath;
 
   compiler.plugin('done', () => {
     browserSync.reload();

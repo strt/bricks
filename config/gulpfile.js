@@ -13,7 +13,7 @@ gulp.task(
       tasks.images,
       tasks.icons,
       tasks.styles,
-      ...(!isDev || config.scripts.publicPath === '' ? [tasks.scripts] : []),
+      ...(!isDev || !config.publicPath ? [tasks.scripts] : []),
     ),
     ...(isDev ? [tasks.serve] : [tasks.sizes]),
   ),
