@@ -56,8 +56,7 @@ const defaultConfig = {
 
 function resolvePaths(prevConfig) {
   const config = Object.assign({}, prevConfig);
-  const cwd = fs.realpathSync(process.cwd());
-  const resolvePath = relativePath => resolve(cwd, relativePath);
+  const resolvePath = relativePath => resolve(prevConfig.dir, relativePath);
 
   config.source = resolvePath(config.source);
   config.output = resolvePath(config.output);
@@ -90,13 +89,14 @@ function mergeConfigs(...configs) {
 }
 
 function getConfig() {
+  const dir = fs.realpathSync(process.cwd());
   const { pkg } = readPkgUp.sync();
-  const path = findUp.sync('bricks.config.js');
+  const configPath = findUp.sync('bricks.config.js');
   let userConfig = {};
 
-  if (path) {
+  if (configPath) {
     // eslint-disable-next-line global-require, import/no-dynamic-require
-    const userConfigModule = require(path);
+    const userConfigModule = require(configPath);
     userConfig = userConfigModule.default || userConfigModule;
   }
 
@@ -104,7 +104,7 @@ function getConfig() {
     userConfig.browserslist = pkg.browserslist;
   }
 
-  const config = resolvePaths(mergeConfigs(defaultConfig, userConfig));
+  const config = resolvePaths(Object.assign({}, mergeConfigs(defaultConfig, userConfig), { dir }));
 
   if (!validateConfig(config)) {
     process.exit(0);

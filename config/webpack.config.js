@@ -1,19 +1,41 @@
-const path = require('path');
+const { resolve } = require('path');
 const webpack = require('webpack');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-const getBabelConfig = require('../utils/getBabelConfig');
+const findBabelConfig = require('../utils/findBabelConfig');
 const babelPreset = require('./babel-preset');
 const config = require('./config');
+// const log = require('../utils/log');
 
 const isDev = process.env.NODE_ENV === 'development';
-const plugins = [new CaseSensitivePathsPlugin()];
+const webpackPlugins = [new CaseSensitivePathsPlugin()];
 
 if (isDev) {
-  plugins.push(
+  webpackPlugins.push(
     new webpack.HotModuleReplacementPlugin(),
     new FriendlyErrorsPlugin(),
   );
+}
+
+function getBabelConfig(dir) {
+  const babelConfig = {
+    cacheDirectory: true,
+    babelrc: false,
+    presets: [],
+  };
+
+  const externalBabelConfig = findBabelConfig(dir);
+
+  if (externalBabelConfig) {
+    // log.info('Using custom babel configuration');
+    babelConfig.babelrc = externalBabelConfig.options.babelrc !== false;
+  }
+
+  if (!babelConfig.babelrc) {
+    babelConfig.presets.push(babelPreset);
+  }
+
+  return babelConfig;
 }
 
 let webpackConfig = {
@@ -21,12 +43,12 @@ let webpackConfig = {
   devtool: isDev ? 'cheap-module-source-map' : 'source-map',
   entry: config.scripts.entries,
   output: {
-    path: path.resolve(config.output),
+    path: resolve(config.output),
     publicPath: config.scripts.publicPath,
     filename: `${config.scripts.path}/[name].js`,
     chunkFilename: `${config.scripts.path}/chunks/[name].js`,
   },
-  plugins,
+  plugins: webpackPlugins,
   node: {
     fs: 'empty',
     process: false,
@@ -38,12 +60,7 @@ let webpackConfig = {
         test: /\.js$/,
         exclude: /(node_modules)/,
         loader: 'babel-loader',
-        options: {
-          cacheDirectory: true,
-          babelrc: false,
-          ...babelPreset,
-          ...getBabelConfig(config.source),
-        },
+        options: getBabelConfig(config.dir),
       },
     ],
   },
