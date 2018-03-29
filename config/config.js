@@ -9,6 +9,7 @@ const validateConfig = require('../utils/validateConfig');
 const defaultConfig = {
   source: 'src',
   output: 'dist',
+  publicPath: null,
   images: {
     path: 'images',
   },
@@ -18,12 +19,11 @@ const defaultConfig = {
   styles: {
     path: 'styles',
     entries: ['./app.scss'],
-    postcssPlugins: [],
+    plugins: [],
   },
   scripts: {
     path: 'scripts',
     entries: ['./app.js'],
-    publicPath: '',
   },
   files(config = this) {
     return [

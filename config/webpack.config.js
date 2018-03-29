@@ -44,7 +44,7 @@ let webpackConfig = {
   entry: config.scripts.entries,
   output: {
     path: resolve(config.output),
-    publicPath: config.scripts.publicPath,
+    publicPath: config.publicPath || '',
     filename: `${config.scripts.path}/[name].js`,
     chunkFilename: `${config.scripts.path}/chunks/[name].js`,
   },
