@@ -2,7 +2,11 @@
 - Webpack 4 (improved performace)
 - Babel 7 (improved performace)
 - Changed default filenames (app.js, app.scss)
-- Renamed properties in config (webpackConfig -> webpack, serve -> browsersync, styles.poscssPlugins -> styles.plugins, scripts.publicPath -> publicPath)
+- Renamed properties in config 
+  - webpackConfig -> webpack
+  - serve -> browsersync
+  - styles.poscssPlugins -> styles.plugins
+  - scripts.publicPath -> publicPath
 - `publicPath` should not point to scripts dir anymore but to the src root
 - Added filesize reporter (only runs with `bricks build`)
 - Added config validation. Will now check if files exists
