@@ -1,10 +1,9 @@
-const { resolve } = require('path');
+const { resolve, join } = require('path');
 const webpack = require('webpack');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const { loadPartialConfig, createConfigItem } = require('@babel/core');
 const config = require('./config');
-// const log = require('../utils/log');
 
 const isDev = process.env.NODE_ENV === 'development';
 const webpackPlugins = [new CaseSensitivePathsPlugin()];
@@ -12,20 +11,21 @@ const babelPreset = createConfigItem(require('./babel-preset'), {
   type: 'preset',
 });
 
-function getBabelConfig() {
+function getBabelConfig(dir) {
   const babelConfig = {
     cacheDirectory: true,
     presets: [],
+    babelrc: false,
   };
 
+  const filename = join(dir, 'filename.js');
   const externalBabelConfig = loadPartialConfig({
     babelrc: true,
+    filename,
   });
 
-  console.log(externalBabelConfig);
-
-  if (!externalBabelConfig.babelrc) {
-    babelConfig.babelrc = false;
+  if (externalBabelConfig && externalBabelConfig.babelrc) {
+    babelConfig.babelrc = true;
   }
 
   if (!babelConfig.babelrc) {
@@ -40,27 +40,6 @@ if (isDev) {
     new webpack.HotModuleReplacementPlugin(),
     new FriendlyErrorsPlugin(),
   );
-}
-
-function getBabelConfig(dir) {
-  const babelConfig = {
-    cacheDirectory: true,
-    babelrc: false,
-    presets: [],
-  };
-
-  const externalBabelConfig = findBabelConfig(dir);
-
-  if (externalBabelConfig) {
-    // log.info('Using custom babel configuration');
-    babelConfig.babelrc = externalBabelConfig.options.babelrc !== false;
-  }
-
-  if (!babelConfig.babelrc) {
-    babelConfig.presets.push(babelPreset);
-  }
-
-  return babelConfig;
 }
 
 let webpackConfig = {
