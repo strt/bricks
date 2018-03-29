@@ -11,6 +11,7 @@ Bricks is a dev-toolkit for developing modern web apps without the need of confi
 - [Usage](#usage)
 - [Custom configuration](#custom-configuration)
   - [Directories](#directories)
+  - [PublicPath](#publicpath)
   - [Styles](#styles)
   - [Scripts](#scripts)
   - [BrowserSync](#browsersync)
@@ -62,6 +63,15 @@ module.exports = {
 }
 ```
 
+### PublicPath
+For more information about the `publicPath` option, go to the [Webpack documentation](https://webpack.js.org/configuration/output/#output-publicpath)
+```javascript
+// bricks.config.js
+module.exports = {
+  publicPath: '/webdav/files/dist/',
+}
+```
+
 ### Styles
 ```javascript
 // bricks.config.js
@@ -80,7 +90,6 @@ module.exports = {
   scripts: {
     path: 'scripts',
     entries: ['./app.js'],
-    publicPath: '', 
   }
 }
 ```
