@@ -1,6 +1,7 @@
 # 2.0
-- publicPath should not point to scripts folder anymore
-- Default filenames (app.js, app.scss)
-- renamed properties in config (webpack, browsersync)
 - Webpack 4 (improved performace)
+- Babel 7 (improved performace)
+- Default filenames (app.js, app.scss)
+- Renamed properties in config (webpack, browsersync, styles.plugins, publicPath)
+- `publicPath` should not point to scripts dir anymore
 - Added filesize reporter
