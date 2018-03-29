@@ -101,7 +101,7 @@ function getConfig() {
   }
 
   if (pkg.browserslist) {
-    userConfig.browserslist = pkg.browserslist;
+    delete defaultConfig.browserslist;
   }
 
   const config = resolvePaths(Object.assign({}, mergeConfigs(defaultConfig, userConfig), { dir }));
