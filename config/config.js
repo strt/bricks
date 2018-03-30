@@ -23,7 +23,9 @@ const defaultConfig = {
   },
   scripts: {
     path: 'scripts',
-    entries: ['./app.js'],
+    entries: {
+      app: './app.js',
+    },
   },
   files(config = this) {
     return [
