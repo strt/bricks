@@ -61,6 +61,9 @@ let webpackConfig = {
     new FriendlyErrorsPlugin(),
     ...(isDev ? [new webpack.HotModuleReplacementPlugin()] : []),
   ],
+  performance: {
+    hints: false,
+  },
   node: {
     fs: 'empty',
     process: false,
