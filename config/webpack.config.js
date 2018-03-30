@@ -6,7 +6,6 @@ const { loadPartialConfig, createConfigItem } = require('@babel/core');
 const config = require('./config');
 
 const isDev = process.env.NODE_ENV === 'development';
-const webpackPlugins = [new CaseSensitivePathsPlugin()];
 const babelPreset = createConfigItem(require('./babel-preset'), {
   type: 'preset',
 });
@@ -35,13 +34,6 @@ function getBabelConfig(dir) {
   return babelConfig;
 }
 
-if (isDev) {
-  webpackPlugins.push(
-    new webpack.HotModuleReplacementPlugin(),
-    new FriendlyErrorsPlugin(),
-  );
-}
-
 let webpackConfig = {
   mode: isDev ? 'development' : 'production',
   devtool: isDev ? 'cheap-module-source-map' : 'source-map',
@@ -52,21 +44,26 @@ let webpackConfig = {
     filename: `${config.scripts.path}/[name].js`,
     chunkFilename: `${config.scripts.path}/chunks/[name].js`,
   },
-  plugins: webpackPlugins,
-  node: {
-    fs: 'empty',
-    process: false,
-  },
   module: {
     strictExportPresence: true,
     rules: [
       {
         test: /\.js$/,
+        include: config.source,
         exclude: /(node_modules)/,
         loader: 'babel-loader',
         options: getBabelConfig(config.dir),
       },
     ],
+  },
+  plugins: [
+    new CaseSensitivePathsPlugin(),
+    new FriendlyErrorsPlugin(),
+    ...(isDev ? [new webpack.HotModuleReplacementPlugin()] : []),
+  ],
+  node: {
+    fs: 'empty',
+    process: false,
   },
 };
 

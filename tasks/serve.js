@@ -1,7 +1,6 @@
 const gulp = require('gulp');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
 const compress = require('compression');
 const browserSync = require('browser-sync');
 const config = require('../config');
@@ -9,9 +8,7 @@ const webpackConfig = require('../config/webpack.config');
 
 module.exports = function serve(done) {
   const tasks = require('../utils/getTasks'); // eslint-disable-line global-require
-
   const compiler = webpack(webpackConfig);
-  const useWebpackMiddleware = config.publicPath;
 
   compiler.plugin('done', () => {
     browserSync.reload();
@@ -19,20 +16,17 @@ module.exports = function serve(done) {
 
   const middleware = [compress()];
 
-  if (useWebpackMiddleware) {
-    middleware.push(
-      webpackDevMiddleware(compiler, {
-        publicPath: webpackConfig.output.publicPath,
-        logLevel: 'silent',
-        noInfo: true,
-      }),
-      webpackHotMiddleware(compiler, { log: false }),
-    );
+  if (config.publicPath) {
+    middleware.push(webpackDevMiddleware(compiler, {
+      publicPath: webpackConfig.output.publicPath,
+      logLevel: 'silent',
+      noInfo: true,
+    }));
   }
 
   browserSync({ ...config.browserSync, middleware });
 
-  if (!useWebpackMiddleware) {
+  if (!config.publicPath) {
     gulp.watch(`${config.source}/${config.scripts.path}/**`, tasks.scripts);
   }
 
