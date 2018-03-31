@@ -1,8 +1,6 @@
-# Bricks
-> A zero-configuration toolkit for building modern web apps 
+# Bricks [![npm](https://img.shields.io/npm/v/@strt/bricks.svg)](https://www.npmjs.com/package/@strt/bricks) [![npm](https://img.shields.io/npm/dm/@strt/bricks.svg)](https://www.npmjs.com/package/@strt/bricks)
 
-[![npm](https://img.shields.io/npm/v/@strt/bricks.svg)](https://www.npmjs.com/package/@strt/bricks) 
-[![npm](https://img.shields.io/npm/dm/@strt/bricks.svg)](https://www.npmjs.com/package/@strt/bricks)
+> A zero-configuration toolkit for building modern web apps 
 
 Bricks is a dev-toolkit for developing modern web apps without the need of configuring `Webpack`, `Babel`, `gulp` etc. It comes with sane defaults but also allows for customization. 
 
@@ -24,17 +22,7 @@ Bricks is a dev-toolkit for developing modern web apps without the need of confi
 $ npm install -D @strt/bricks
 ```
 
-## Usage
-Bricks comes with these built in commands
-
-#### `bricks dev` 
-Builds the project for development.
-
-#### `bricks build` 
-Builds the project for production which minifies and optimizes assets. Sourcemaps are also generated.
-
-You can use them directly with npx, e.g. `npx bricks build`. But it's recommended to add them as scripts to your `package.json`
-
+... then add the scripts to your `package.json`
 ```json
 {
   "scripts": {
@@ -43,6 +31,15 @@ You can use them directly with npx, e.g. `npx bricks build`. But it's recommende
   }
 }
 ```
+
+## Usage
+Bricks includes two commands – `dev` (default) and `build`. Neither requires any arguments.
+
+### `bricks` / `bricks dev` 
+Builds the project for development.
+
+### `bricks build` 
+Builds the project for production which minifies and optimizes assets. Sourcemaps are also generated.
 
 ## Custom configuration
 For custom advanced behavior of Bricks, create a `bricks.config.js` file in the root of your project directory. 
