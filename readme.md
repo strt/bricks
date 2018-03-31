@@ -7,11 +7,12 @@ Bricks is a dev-toolkit for developing modern web apps without the need of confi
 ## Contents
 - [Install](#install)
 - [Usage](#usage)
-- [Custom configuration](#custom-configuration)
+- [Configuration](#configuration)
   - [Directories](#directories)
   - [PublicPath](#publicpath)
   - [Styles](#styles)
   - [Scripts](#scripts)
+  - [Webpack](#webpack)
   - [BrowserSync](#browsersync)
   - [Autoprefixer](#autoprefixer)
   - [Babel](#babel)
@@ -41,7 +42,7 @@ Builds the project for development.
 ### `bricks build` 
 Builds the project for production which minifies and optimizes assets. Sourcemaps are also generated.
 
-## Custom configuration
+## Configuration
 For custom advanced behavior of Bricks, create a `bricks.config.js` file in the root of your project directory. 
 
 ```javascript
@@ -61,7 +62,7 @@ module.exports = {
 ```
 
 ### PublicPath
-For more information about the `publicPath` option, go to the [Webpack documentation](https://webpack.js.org/configuration/output/#output-publicpath)
+For more detailed information about the `publicPath` option, visit the [Webpack documentation](https://webpack.js.org/configuration/output/#output-publicpath).
 ```javascript
 // bricks.config.js
 module.exports = {
@@ -85,21 +86,24 @@ module.exports = {
 // bricks.config.js
 module.exports = {
   scripts: {
-    path: 'scripts',
-    entries: ['./app.js'],
-  }
-}
-```
-
-With named multiple or named entries
-```javascript
-// bricks.config.js
-module.exports = {
-  scripts: {
+     path: 'scripts',
     entries: {
       app: './app.js',
       polyfills: './polyfills.js',
     },
+  }
+}
+```
+
+### Webpack
+To extend the usage of webpack, define a function that extends the config via `bricks.config.js`.
+
+```javascript
+// bricks.config.js
+module.exports = {
+  webpack: (config, { isDev }) => {
+    // Perform the customizations to the config
+    return config;
   }
 }
 ```
@@ -123,7 +127,7 @@ module.exports = {
 ```
 
 ### Autoprefixer
-To customize which browsers you want to target, add a [browserslist](https://github.com/ai/browserslist) property to your `package.json` and define which browsers you want to support. This affects both `autoprefixer` and `babel`.
+To customize which browsers you want to target, add a [browserslist](https://github.com/ai/browserslist) property to your `package.json` and define the browsers you want. This affects both `autoprefixer` and `babel`.
 
 ```json
 {
