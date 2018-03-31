@@ -8,12 +8,7 @@ Bricks is a dev-toolkit for developing modern web apps without the need of confi
 - [Install](#install)
 - [Usage](#usage)
 - [Configuration](#configuration)
-  - [Directories](#directories)
-  - [PublicPath](#publicpath)
-  - [Styles](#styles)
-  - [Scripts](#scripts)
-  - [Webpack](#webpack)
-  - [BrowserSync](#browsersync)
+  - [Options](#options)
   - [Browsers](#browsers)
   - [Babel](#babel)
 - [FAQ](#faq)
@@ -51,17 +46,33 @@ module.exports = {
   // Your custom configuration
 }
 ```
+### Options
+| Name | Type | Default | Description |
+| :-: | :--: | :--: | --- |
+| `source` | `{String}` | `'src'` | Source directory |
+| `output` | `{String}` | `'dist'` | Output directory |
+| `publicPath` | `{String}` | `''` | For more detailed information, visit the [Webpack documentation](https://webpack.js.org/configuration/output/#output-publicpath).|
+| `browserSync` | `{Object}` | `{}` | For more detailed information, visit the [BrowserSync documentation](https://www.browsersync.io/docs/options) |
+| `files` | `{Function}` | `` |  |
+| `images` | `{Object}` | `` |  |
 
-### Directories
+#### `source`
 ```javascript
 // bricks.config.js
 module.exports = {
   source: 'src',
+}
+```
+
+#### `output`
+```javascript
+// bricks.config.js
+module.exports = {
   output: 'dist',
 }
 ```
 
-### PublicPath
+#### `publicPath`
 For more detailed information about the `publicPath` option, visit the [Webpack documentation](https://webpack.js.org/configuration/output/#output-publicpath).
 ```javascript
 // bricks.config.js
@@ -70,7 +81,7 @@ module.exports = {
 }
 ```
 
-### Styles
+#### `styles`
 ```javascript
 // bricks.config.js
 module.exports = {
@@ -81,7 +92,7 @@ module.exports = {
 }
 ```
 
-### Scripts
+#### `scripts`
 ```javascript
 // bricks.config.js
 module.exports = {
@@ -95,7 +106,7 @@ module.exports = {
 }
 ```
 
-### Webpack
+#### `webpack`
 To extend the usage of `webpack`, define a function that extends the config via `bricks.config.js`.
 
 ```javascript
@@ -108,7 +119,7 @@ module.exports = {
 }
 ```
 
-### BrowserSync
+#### `browserSync`
 To set a `BrowserSync` configuration, add a `browserSync` property to the `bricks.config.js`. Visit the [BrowserSync documentation](https://www.browsersync.io/docs/options) for more detailed information.
 
 ```javascript
