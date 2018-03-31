@@ -14,7 +14,7 @@ Bricks is a dev-toolkit for developing modern web apps without the need of confi
   - [Scripts](#scripts)
   - [Webpack](#webpack)
   - [BrowserSync](#browsersync)
-  - [Autoprefixer](#autoprefixer)
+  - [Browsers](#browsers)
   - [Babel](#babel)
 - [FAQ](#faq)
 
@@ -96,7 +96,7 @@ module.exports = {
 ```
 
 ### Webpack
-To extend the usage of webpack, define a function that extends the config via `bricks.config.js`.
+To extend the usage of `webpack`, define a function that extends the config via `bricks.config.js`.
 
 ```javascript
 // bricks.config.js
@@ -109,7 +109,7 @@ module.exports = {
 ```
 
 ### BrowserSync
-To set a [BrowserSync](https://www.browsersync.io) configuration, add a `browserSync` property to the `bricks.config.js` file. The configuration will be forwarded directly to [BrowserSync](https://www.browsersync.io/docs/options).
+To set a `BrowserSync` configuration, add a `browserSync` property to the `bricks.config.js`. Visit the [BrowserSync documentation](https://www.browsersync.io/docs/options) for more detailed information.
 
 ```javascript
 // bricks.config.js
@@ -126,7 +126,7 @@ module.exports = {
 }
 ```
 
-### Autoprefixer
+### Browsers
 To customize which browsers you want to target, add a [browserslist](https://github.com/ai/browserslist) property to your `package.json` and define the browsers you want. This affects both `autoprefixer` and `babel`.
 
 ```json
