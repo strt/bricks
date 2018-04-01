@@ -50,13 +50,13 @@ module.exports = {
 | Name | Type | Default | Description |
 | :-: | :--: | :--: | --- |
 | `source` | `{String}` | `'src'` | Path to source directory |
-| `output` | `{String}` | `'dist'` | Path to utput directory |
+| `output` | `{String}` | `'dist'` | Path to output directory |
 | `publicPath` | `{String}` | `''` | For more detailed information, visit the [Webpack documentation](https://webpack.js.org/configuration/output/#output-publicpath).|
-| `browserSync` | `{Object}` | `{}` | For more detailed information, visit the [BrowserSync documentation](https://www.browsersync.io/docs/options) |
-| `files` | `{Function}` | `` |  |
+| `browserSync` | `{Object}` | `{}` | Options to pass to [BrowserSync](https://www.browsersync.io/docs/options) |
+| `files` | `{Function}` | `` | Function to define which files are static |
 | `images.path` | `{String}` | `images` | Path to images directory |
 | `icons.path` | `{String}` | `icons` | Path to icons directory |
-| `webpack` | `{Function}` | `null` |  |
+| `webpack` | `{Function}` | `null` | Function to extend the use of `webpack` |
 
 #### `source`
 ```javascript
