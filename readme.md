@@ -51,10 +51,14 @@ module.exports = {
 | :-: | :--: | :--: | --- |
 | `source` | `{String}` | `'src'` | Path to source directory |
 | `output` | `{String}` | `'dist'` | Path to output directory |
-| `publicPath` | `{String}` | `''` | For more detailed information, visit the [Webpack documentation](https://webpack.js.org/configuration/output/#output-publicpath).|
+| `publicPath` | `{String}` | `null` | Value to pass to [Webpack](https://webpack.js.org/configuration/output/#output-publicpath).|
 | `browserSync` | `{Object}` | [Default](https://github.com/strt/bricks/blob/next/config/config.js#L39-L46) | Options to pass to [BrowserSync](https://www.browsersync.io/docs/options) |
-| `files` | `{Function}` | [Default](https://github.com/strt/bricks/blob/next/config/config.js#L30-L38) | Function to define which files are static |
-| `images.path` | `{String}` | `images` | Path to images directory |
+| `files` | `{Function}` | [Default](https://github.com/strt/bricks/blob/next/config/config.js#L30-L36) | Function to define which files are static |
+| `styles.path` | `{String}` | `styles` | Path to styles directory |
+| `styles.entries` | `{Array}` | `[]` |  |
+| `styles.plugins` | `{Array}` | `[]` | PostCSS plugins |
+| `scripts.path` | `{String}` | `scripts` | Path to scripts directory |
+| `scripts.entries` | `{Object}` | `` |  |
 | `icons.path` | `{String}` | `icons` | Path to icons directory |
 | `webpack` | `{Function}` | `null` | Function to extend the use of `webpack` |
 
