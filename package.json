@@ -1,7 +1,7 @@
 {
   "name": "@strt/bricks",
   "description": "A zero-configuration toolkit for building modern web apps",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0-beta.3",
   "author": "Strateg Marknadsföring AB <alexander.nanberg@strateg.se>",
   "license": "MIT",
   "repository": "github:strt/bricks",
@@ -26,12 +26,12 @@
     "bricks": "./bin/bricks"
   },
   "dependencies": {
-    "@babel/core": "^7.0.0-beta.42",
-    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.42",
-    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.42",
-    "@babel/plugin-syntax-dynamic-import": "^7.0.0-beta.42",
-    "@babel/preset-env": "^7.0.0-beta.42",
-    "@babel/preset-react": "^7.0.0-beta.42",
+    "@babel/core": "^7.0.0-beta.44",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.44",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.44",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0-beta.44",
+    "@babel/preset-env": "^7.0.0-beta.44",
+    "@babel/preset-react": "^7.0.0-beta.44",
     "autoprefixer": "^8.2.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^8.0.0-beta.2",
@@ -43,13 +43,13 @@
     "del": "^3.0.0",
     "execa": "^0.10.0",
     "find-up": "^2.1.0",
-    "friendly-errors-webpack-plugin": "^1.6.1",
+    "friendly-errors-webpack-plugin": "^1.7.0",
     "gulp": "^4.0.0",
     "gulp-if": "^2.0.2",
     "gulp-imagemin": "^4.1.0",
     "gulp-plumber": "^1.2.0",
     "gulp-postcss": "^7.0.1",
-    "gulp-sass": "^3.2.1",
+    "gulp-sass": "^4.0.1",
     "gulp-size": "^3.0.0",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-svg-sprite": "^1.4.0",
@@ -59,15 +59,15 @@
     "require-dir": "^1.0.0",
     "semver": "^5.5.0",
     "time-stamp": "^2.0.0",
-    "webpack": "^4.3.0",
-    "webpack-dev-middleware": "^3.1.0"
+    "webpack": "^4.5.0",
+    "webpack-dev-middleware": "^3.1.2"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-import": "^2.10.0",
     "husky": "^0.14.3",
-    "lint-staged": "^7.0.0"
+    "lint-staged": "^7.0.4"
   }
 }
