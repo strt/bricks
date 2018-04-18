@@ -1,7 +1,7 @@
 {
   "name": "@strt/bricks",
   "description": "A zero-configuration toolkit for building modern web apps",
-  "version": "2.0.0-beta.13",
+  "version": "2.0.0-beta.14",
   "author": "Strateg Marknadsföring AB <alexander.nanberg@strateg.se>",
   "license": "MIT",
   "repository": "github:strt/bricks",
@@ -32,12 +32,11 @@
     "@babel/plugin-syntax-dynamic-import": "^7.0.0-beta.44",
     "@babel/preset-env": "^7.0.0-beta.44",
     "@babel/preset-react": "^7.0.0-beta.44",
-    "autoprefixer": "^8.2.0",
-    "babel-core": "^6.26.0",
+    "autoprefixer": "^8.3.0",
     "babel-loader": "^8.0.0-beta.2",
     "browser-sync": "^2.23.6",
     "case-sensitive-paths-webpack-plugin": "^2.1.2",
-    "chalk": "^2.3.2",
+    "chalk": "^2.4.0",
     "compression": "^1.7.2",
     "deepmerge": "^2.1.0",
     "del": "^3.0.0",
@@ -59,14 +58,14 @@
     "require-dir": "^1.0.0",
     "semver": "^5.5.0",
     "time-stamp": "^2.0.0",
-    "webpack": "^4.5.0",
+    "webpack": "^4.6.0",
     "webpack-dev-middleware": "^3.1.2"
   },
   "devDependencies": {
-    "babel-eslint": "^8.2.2",
+    "babel-eslint": "^8.2.3",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.10.0",
+    "eslint-plugin-import": "^2.11.0",
     "husky": "^0.14.3",
     "lint-staged": "^7.0.4"
   }
