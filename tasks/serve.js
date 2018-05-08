@@ -10,7 +10,7 @@ module.exports = function serve(done) {
   const tasks = require('../utils/getTasks'); // eslint-disable-line global-require
   const compiler = webpack(webpackConfig);
 
-  compiler.plugin('done', () => {
+  compiler.hooks.done.tap({ name: 'BrowserSync' }, () => {
     browserSync.reload();
   });
 
