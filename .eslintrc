@@ -5,8 +5,8 @@
     "node": true
   },
   "rules": {
-    "strict": 0,
     "max-len": "off",
-    "no-console": 0
+    "no-console": 0,
+    "strict": 0
   }
 }
