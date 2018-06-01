@@ -3,7 +3,7 @@ const path = require('path');
 const chalk = require('chalk');
 const log = require('./log');
 
-function checkRequiredFiles(files) {
+function validateFiles(files) {
   let currentFilePath;
 
   try {
@@ -18,7 +18,7 @@ function checkRequiredFiles(files) {
     const fileName = path.basename(currentFilePath);
 
     log.error(
-      'Could not find a required file.',
+      'Could not find a required file or directory.',
       `${chalk.red('  Name: ') + fileName}\n${chalk.red('  Searched in: ') +
         dirName}`,
     );
@@ -38,7 +38,7 @@ module.exports = function validateConfig(config) {
 
   let isValid = true;
 
-  isValid = checkRequiredFiles(requiredFiles);
+  isValid = validateFiles(requiredFiles);
 
   return isValid;
 };
