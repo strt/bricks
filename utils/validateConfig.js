@@ -28,7 +28,7 @@ function validateFiles(files) {
 }
 
 module.exports = function validateConfig(config) {
-  const requiredFiles = [
+  const files = [
     config.source,
     ...config.styles.entries,
     ...(Array.isArray(config.scripts.entries)
@@ -36,9 +36,5 @@ module.exports = function validateConfig(config) {
       : Object.values(config.scripts.entries)),
   ];
 
-  let isValid = true;
-
-  isValid = validateFiles(requiredFiles);
-
-  return isValid;
+  return validateFiles(files);
 };
