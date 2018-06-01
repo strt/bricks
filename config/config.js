@@ -1,9 +1,9 @@
 const fs = require('fs');
 const { resolve, join } = require('path');
-const deepmerge = require('deepmerge');
 const readPkgUp = require('read-pkg-up');
 const findUp = require('find-up');
 const timestamp = require('../utils/timestamp');
+const isObject = require('../utils/isObject');
 const validateConfig = require('../utils/validateConfig');
 
 const defaultConfig = {
@@ -82,21 +82,27 @@ function resolvePaths(prevConfig) {
   return config;
 }
 
-function mergeConfigs(...configs) {
-  return deepmerge.all([...configs], {
-    arrayMerge: (dest, src) => src,
-  });
+function merge(base, config) {
+  return Object.keys(config).reduce((acc, key) => {
+    const value = isObject(base[key])
+      ? { ...base[key], ...config[key] }
+      : config[key];
+
+    return {
+      ...acc,
+      [key]: value,
+    };
+  }, base);
 }
 
 function getConfig() {
-  const dir = fs.realpathSync(process.cwd());
-  const { pkg } = readPkgUp.sync();
-  const configPath = findUp.sync('bricks.config.js');
+  const cwd = fs.realpathSync(process.cwd());
+  const { pkg } = readPkgUp.sync({ cwd });
+  const configPath = findUp.sync('bricks.config.js', { cwd });
   let userConfig = {};
 
   if (configPath) {
-    // eslint-disable-next-line global-require, import/no-dynamic-require
-    const userConfigModule = require(configPath);
+    const userConfigModule = require(configPath); // eslint-disable-line global-require, import/no-dynamic-require
     userConfig = userConfigModule.default || userConfigModule;
   }
 
@@ -104,7 +110,10 @@ function getConfig() {
     delete defaultConfig.browserslist;
   }
 
-  const config = resolvePaths(Object.assign({}, mergeConfigs(defaultConfig, userConfig), { dir }));
+  const config = resolvePaths({
+    ...merge(defaultConfig, userConfig),
+    dir: cwd,
+  });
 
   if (!validateConfig(config)) {
     process.exit(0);
