@@ -52,6 +52,7 @@
     "gulp-sourcemaps": "^2.6.4",
     "gulp-svg-sprite": "^1.4.0",
     "meow": "^5.0.0",
+    "postcss-import": "^11.1.0",
     "pretty-hrtime": "^1.0.3",
     "read-pkg-up": "^3.0.0",
     "require-dir": "^1.0.0",

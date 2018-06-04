@@ -1,6 +1,7 @@
 const path = require('path');
 const gulp = require('gulp');
 const postcss = require('gulp-postcss');
+const atImport = require('postcss-import');
 const autoprefixer = require('autoprefixer');
 const plumber = require('gulp-plumber');
 const sass = require('gulp-sass');
@@ -23,6 +24,7 @@ module.exports = function styles() {
       includePaths: path.join('node_modules'),
     }))
     .pipe(postcss([
+      atImport(),
       autoprefixer({
         browsers: config.browserslist,
       }),
