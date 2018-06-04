@@ -11,6 +11,8 @@ const { stream } = require('browser-sync');
 const config = require('../config');
 const errorHandler = require('../utils/errorHandler');
 
+const isDev = process.env.NODE_ENV === 'development';
+
 module.exports = function styles() {
   return gulp
     .src(config.styles.entries)
@@ -21,7 +23,6 @@ module.exports = function styles() {
       loadMaps: true,
     }))
     .pipe(sass({
-      outputStyle: 'compressed',
       includePaths: path.join('node_modules'),
     }))
     .pipe(postcss([
@@ -29,7 +30,7 @@ module.exports = function styles() {
       autoprefixer({
         browsers: config.browserslist,
       }),
-      nano(),
+      ...(isDev ? [] : [nano()]),
       ...config.styles.plugins,
     ]))
     .pipe(sourcemaps.write('.'))
