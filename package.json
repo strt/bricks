@@ -38,6 +38,7 @@
     "case-sensitive-paths-webpack-plugin": "^2.1.2",
     "chalk": "^2.4.1",
     "compression": "^1.7.2",
+    "cssnano": "^3.10.0",
     "del": "^3.0.0",
     "execa": "^0.10.0",
     "find-up": "^2.1.0",

@@ -2,6 +2,7 @@ const path = require('path');
 const gulp = require('gulp');
 const postcss = require('gulp-postcss');
 const atImport = require('postcss-import');
+const nano = require('cssnano');
 const autoprefixer = require('autoprefixer');
 const plumber = require('gulp-plumber');
 const sass = require('gulp-sass');
@@ -28,6 +29,7 @@ module.exports = function styles() {
       autoprefixer({
         browsers: config.browserslist,
       }),
+      nano(),
       ...config.styles.plugins,
     ]))
     .pipe(sourcemaps.write('.'))
