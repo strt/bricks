@@ -42,15 +42,7 @@ const defaultConfig = {
     logPrefix: timestamp(),
     files: ['**/*.html', '**/*.twig'],
   },
-  browserslist: [
-    'ie 11',
-    'last 2 Edge versions',
-    'last 2 Firefox versions',
-    'last 2 Chrome versions',
-    'last 2 Safari versions',
-    'last 2 iOS versions',
-    'last 2 ChromeAndroid versions',
-  ],
+  browserslist: ['ie 11'],
   webpack: null,
 };
 
@@ -62,11 +54,13 @@ function resolvePaths(prevConfig) {
   config.output = resolvePath(config.output);
 
   config.styles.entries = config.styles.entries.map(i =>
-    join(config.source, config.styles.path, i));
+    join(config.source, config.styles.path, i),
+  );
 
   if (Array.isArray(config.scripts.entries)) {
     config.scripts.entries = config.scripts.entries.map(i =>
-      join(config.source, config.scripts.path, i));
+      join(config.source, config.scripts.path, i),
+    );
   } else {
     config.scripts.entries = Object.keys(config.scripts.entries).reduce(
       (acc, key) => {

@@ -11,17 +11,21 @@ module.exports = function icons() {
 
   return gulp
     .src(src)
-    .pipe(plumber({
-      errorHandler,
-    }))
-    .pipe(sprite({
-      mode: {
-        symbol: {
-          dest: '',
-          render: false,
-          sprite: 'sprite.svg',
+    .pipe(
+      plumber({
+        errorHandler,
+      }),
+    )
+    .pipe(
+      sprite({
+        mode: {
+          symbol: {
+            dest: '',
+            render: false,
+            sprite: 'sprite.svg',
+          },
         },
-      },
-    }))
+      }),
+    )
     .pipe(gulp.dest(dest));
 };

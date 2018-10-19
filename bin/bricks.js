@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-'use strict';
-
 const execa = require('execa');
 const meow = require('meow');
 const semver = require('semver');
@@ -9,9 +7,11 @@ const pkg = require('../package.json');
 const log = require('../utils/log');
 
 if (!semver.satisfies(process.version, pkg.engines.node)) {
-  log.error(`Required node version ${
-    pkg.engines.node
-  } not satisfied with current version ${process.version}`);
+  log.error(
+    `Required node version ${
+      pkg.engines.node
+    } not satisfied with current version ${process.version}`,
+  );
   process.exit(0);
 }
 
@@ -29,7 +29,9 @@ const cli = meow(`
 let cmd = cli.input[0];
 
 if (cmd && !commands.has(cmd)) {
-  log.error(`Unknown command "${cmd}". Use the --help flag to list available commands.`);
+  log.error(
+    `Unknown command "${cmd}". Use the --help flag to list available commands.`,
+  );
   process.exit(0);
 }
 

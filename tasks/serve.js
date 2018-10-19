@@ -17,11 +17,13 @@ module.exports = function serve(done) {
   const middleware = [compress()];
 
   if (config.publicPath) {
-    middleware.push(webpackDevMiddleware(compiler, {
-      publicPath: webpackConfig.output.publicPath,
-      logLevel: 'silent',
-      noInfo: true,
-    }));
+    middleware.push(
+      webpackDevMiddleware(compiler, {
+        publicPath: webpackConfig.output.publicPath,
+        logLevel: 'silent',
+        noInfo: true,
+      }),
+    );
   }
 
   browserSync({ ...config.browserSync, middleware });

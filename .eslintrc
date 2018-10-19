@@ -1,12 +1,3 @@
 {
-  "extends": "airbnb-base",
-  "parser": "babel-eslint",
-  "env": {
-    "node": true
-  },
-  "rules": {
-    "max-len": "off",
-    "no-console": 0,
-    "strict": 0
-  }
+  "extends": "strateg"
 }

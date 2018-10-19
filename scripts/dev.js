@@ -1,5 +1,3 @@
-'use strict';
-
 process.env.NODE_ENV = 'development';
 
 const log = require('../utils/log');
