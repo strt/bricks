@@ -4,7 +4,7 @@ module.exports = () => ({
       '@babel/preset-env',
       {
         modules: false,
-        useBuiltIns: 'entry',
+        useBuiltIns: false,
       },
     ],
     ['@babel/preset-react', { useBuiltIns: true }],
@@ -13,5 +13,6 @@ module.exports = () => ({
     ['@babel/plugin-proposal-class-properties', { loose: true }],
     ['@babel/plugin-proposal-object-rest-spread', { useBuiltIns: true }],
     '@babel/plugin-syntax-dynamic-import',
+    'macros',
   ],
 });
