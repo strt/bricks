@@ -34,10 +34,37 @@ function getBabelConfig(dir) {
   return babelConfig;
 }
 
+function getEntry() {
+  const { entries } = config.scripts;
+
+  if (!isDev || !config.publicPath) {
+    return entries;
+  }
+
+  const client = 'webpack-hot-middleware/client?reload=true';
+
+  if (Array.isArray(entries)) {
+    return [client, ...entries];
+  }
+
+  if (typeof entries === 'object') {
+    return Object.entries(entries).reduce((acc, [key, value]) => {
+      acc[key] = [
+        `${client}&name=${key}`,
+        ...(Array.isArray(value) ? [...value] : [value]),
+      ];
+
+      return acc;
+    }, {});
+  }
+
+  return entries;
+}
+
 let webpackConfig = {
   mode: isDev ? 'development' : 'production',
   devtool: isDev ? 'cheap-module-source-map' : 'source-map',
-  entry: config.scripts.entries,
+  entry: getEntry(),
   output: {
     path: resolve(config.output),
     publicPath: config.publicPath || '',
