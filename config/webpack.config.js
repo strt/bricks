@@ -2,6 +2,7 @@ const { resolve, join } = require('path');
 const webpack = require('webpack');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const { loadPartialConfig, createConfigItem } = require('@babel/core');
 const config = require('./config');
 
@@ -81,6 +82,13 @@ let webpackConfig = {
         loader: 'babel-loader',
         options: getBabelConfig(config.dir),
       },
+    ],
+  },
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        parallel: true,
+      }),
     ],
   },
   plugins: [
