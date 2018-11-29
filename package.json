@@ -75,9 +75,8 @@
     "read-pkg-up": "^4.0.0",
     "require-dir": "^1.0.0",
     "semver": "^5.5.1",
-    "terser-webpack-plugin": "^1.1.0",
     "time-stamp": "^2.1.0",
-    "webpack": "^4.17.1",
+    "webpack": "^4.26.0",
     "webpack-dev-middleware": "^3.2.0",
     "webpack-hot-middleware": "^2.24.3"
   },
