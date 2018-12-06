@@ -98,7 +98,7 @@ let webpackConfig = {
 };
 
 if (typeof config.webpack === 'function') {
-  webpackConfig = config.webpack(webpackConfig, isDev);
+  webpackConfig = config.webpack({ webpackConfig, config, isDev });
 }
 
 module.exports = webpackConfig;
