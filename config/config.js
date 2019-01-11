@@ -42,7 +42,16 @@ const defaultConfig = {
     logPrefix: timestamp(),
     files: ['**/*.html', '**/*.twig'],
   },
-  browserslist: ['ie 11'],
+  browserslist: [
+    'last 2 iOS major versions',
+    'last 2 Safari major versions',
+    'last 2 ChromeAndroid major versions',
+    'last 2 Chrome major versions',
+    'last 2 Edge major versions',
+    'last 2 Firefox major versions',
+    'IE 11',
+    '> 5%',
+  ],
   webpack: null,
 };
 
