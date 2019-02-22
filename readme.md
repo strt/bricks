@@ -118,9 +118,9 @@ To extend the usage of `webpack`, define a function that extends the config via 
 ```javascript
 // bricks.config.js
 module.exports = {
-  webpack: (config, { isDev }) => {
+  webpack: ({ webpackConfig, config, isDev }) => {
     // Perform the customizations to the config
-    return config;
+    return webpackConfig;
   }
 }
 ```
