@@ -10,7 +10,12 @@ const config = require('../config');
 module.exports = function serve(done) {
   const tasks = require('../utils/getTasks'); // eslint-disable-line global-require
   const compiler = webpack(webpackConfig);
-  const middleware = [compress()];
+  const middleware = [
+    ...(Array.isArray(config.browserSync.middleware)
+      ? config.browserSync.middleware
+      : []),
+    compress(),
+  ];
 
   if (config.publicPath) {
     middleware.push(
