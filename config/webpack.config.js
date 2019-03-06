@@ -75,9 +75,8 @@ let webpackConfig = {
     strictExportPresence: true,
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|mjs|jsx|ts|tsx)$/,
         include: config.source,
-        exclude: /(node_modules)/,
         loader: 'babel-loader',
         options: getBabelConfig(config.dir),
       },
