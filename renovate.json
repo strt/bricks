@@ -2,9 +2,5 @@
   "extends": [
     "config:base"
   ],
-  "rangeStrategy": "replace",
-  "lockFileMaintenance": {
-    "enabled": true,
-    "extends": "schedule:weekly"
-  }
+  "rangeStrategy": "replace"
 }
