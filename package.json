@@ -27,7 +27,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "format": "prettier-eslint --write **/*.js"
+    "format": "prettier --write **/*.js"
   },
   "husky": {
     "hooks": {
@@ -37,7 +37,7 @@
   "lint-staged": {
     "*.js": [
       "eslint",
-      "prettier-eslint --write",
+      "prettier --write",
       "git add"
     ]
   },
@@ -87,7 +87,6 @@
     "eslint-config-strateg": "^1.1.1",
     "husky": "^1.1.0",
     "lint-staged": "^8.0.0",
-    "prettier": "^1.14.3",
-    "prettier-eslint-cli": "^4.7.1"
+    "prettier": "^1.14.3"
   }
 }
