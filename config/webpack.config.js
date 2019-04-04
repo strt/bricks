@@ -88,7 +88,7 @@ let webpackConfig = {
     ...(isDev ? [new webpack.HotModuleReplacementPlugin()] : []),
   ],
   optimization: {
-    minimize: !process.env.BRICKS_COMPRESS === false,
+    minimize: !(process.env.BRICKS_COMPRESS === 'false'),
   },
   performance: {
     hints: false,

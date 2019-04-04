@@ -12,8 +12,8 @@ const config = require('../config');
 const errorHandler = require('../utils/errorHandler');
 
 const compress =
-  process.env.NODE_ENV === 'development' ||
-  !process.env.BRICKS_COMPRESS === false;
+  process.env.NODE_ENV === 'production' &&
+  !(process.env.BRICKS_COMPRESS === 'false');
 
 module.exports = function styles() {
   return gulp
@@ -39,7 +39,7 @@ module.exports = function styles() {
         autoprefixer({
           browsers: config.browserslist,
         }),
-        ...(compress ? [] : [nano()]),
+        ...(compress ? [nano()] : []),
         ...config.styles.plugins,
       ]),
     )
