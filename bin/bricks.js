@@ -41,7 +41,7 @@ if (!commands.has(cmd)) {
 
 execa('node', [require.resolve(`../scripts/${cmd}`)], {
   stdio: 'inherit',
-}).catch((e) => {
+}).catch(e => {
   log.error('Unknown error', e.toString());
   process.exit(0);
 });
