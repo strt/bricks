@@ -11,7 +11,11 @@ const { stream } = require('browser-sync');
 const config = require('../config');
 const errorHandler = require('../utils/errorHandler');
 
-const isDev = process.env.NODE_ENV === 'development';
+const compress =
+  process.env.NODE_ENV === 'development' ||
+  !process.env.BRICKS_COMPRESS === false;
+
+console.log(compress);
 
 module.exports = function styles() {
   return gulp
@@ -37,7 +41,7 @@ module.exports = function styles() {
         autoprefixer({
           browsers: config.browserslist,
         }),
-        ...(isDev ? [] : [nano()]),
+        ...(compress ? [] : [nano()]),
         ...config.styles.plugins,
       ]),
     )
