@@ -15,8 +15,6 @@ const compress =
   process.env.NODE_ENV === 'development' ||
   !process.env.BRICKS_COMPRESS === false;
 
-console.log(compress);
-
 module.exports = function styles() {
   return gulp
     .src(config.styles.entries)
