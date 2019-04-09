@@ -1,8 +1,8 @@
 # Bricks [![npm](https://img.shields.io/npm/v/@strt/bricks.svg)](https://www.npmjs.com/package/@strt/bricks) [![npm](https://img.shields.io/npm/dm/@strt/bricks.svg)](https://www.npmjs.com/package/@strt/bricks)
 
-> A zero-configuration toolkit for building modern web apps 
+> A zero-configuration toolkit for building modern web apps
 
-Bricks is a dev-toolkit for developing modern web apps without the need of configuring `Webpack`, `Babel`, `gulp` etc. It comes with sane defaults but also allows for customization. 
+Bricks is a dev-toolkit for developing modern web apps without the need of configuring `Webpack`, `Babel`, `gulp` etc. It comes with sane defaults but also allows for customization.
 
 ## Contents
 - [Install](#install)
@@ -31,14 +31,14 @@ $ npm install -D @strt/bricks
 ## Usage
 Bricks includes two commands – `dev` (default) and `build`. Neither requires any arguments.
 
-### `bricks` / `bricks dev` 
+### `bricks` / `bricks dev`
 Builds the project for development.
 
-### `bricks build` 
+### `bricks build`
 Builds the project for production which minifies and optimizes assets. Sourcemaps are also generated.
 
 ## Configuration
-For custom advanced behavior of Bricks, create a `bricks.config.js` file in the root of your project directory. 
+For custom advanced behavior of Bricks, create a `bricks.config.js` file in the root of your project directory.
 
 ```javascript
 // bricks.config.js
@@ -103,7 +103,7 @@ module.exports = {
 // bricks.config.js
 module.exports = {
   scripts: {
-     path: 'scripts',
+    path: 'scripts',
     entries: {
       app: './app.js',
       polyfills: './polyfills.js',
@@ -153,7 +153,7 @@ To customize which browsers you want to target, add a [browserslist](https://git
 ```
 
 ### Babel
-To extend the usage of `babel`, create a `.babelrc` in the root of your project directory. This file will overwrite the default babel config. You need to add the `@strt/bricks/babel` preset if you only want to extend the default config. 
+To extend the usage of `babel`, create a `.babelrc` in the root of your project directory. This file will overwrite the default babel config. You need to add the `@strt/bricks/babel` preset if you only want to extend the default config.
 
 ```json
 {
