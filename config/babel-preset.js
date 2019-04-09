@@ -9,7 +9,11 @@ module.exports = env => {
           modules: false,
           useBuiltIns: 'entry',
           corejs: 3,
-          exclude: ['transform-typeof-symbol'],
+          exclude: [
+            'transform-typeof-symbol',
+            'transform-regenerator',
+            'transform-async-to-generator',
+          ],
         },
       ],
       [
@@ -18,9 +22,18 @@ module.exports = env => {
       ],
     ],
     plugins: [
+      [
+        'babel-plugin-transform-async-to-promises',
+        {
+          inlineHelpers: true,
+        },
+      ],
       ['@babel/plugin-proposal-class-properties', { loose: true }],
       ['@babel/plugin-proposal-object-rest-spread', { useBuiltIns: true }],
-      ['@babel/plugin-transform-runtime', { useESModules: true }],
+      [
+        '@babel/plugin-transform-runtime',
+        { useESModules: true, regenerator: false },
+      ],
       '@babel/plugin-syntax-dynamic-import',
       'macros',
     ],
