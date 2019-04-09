@@ -103,8 +103,8 @@ module.exports = {
 // bricks.config.js
 module.exports = {
   scripts: {
-      path: 'scripts',
-      entries: {
+    path: 'scripts',
+    entries: {
       app: './app.js',
       polyfills: './polyfills.js',
     },
