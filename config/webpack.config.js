@@ -6,6 +6,8 @@ const { loadPartialConfig, createConfigItem } = require('@babel/core');
 const config = require('./config');
 
 const isDev = process.env.NODE_ENV === 'development';
+const isProduction = process.env.NODE_ENV === 'production';
+
 const babelPreset = createConfigItem(require('./babel-preset'), {
   type: 'preset',
 });
@@ -88,7 +90,7 @@ let webpackConfig = {
     ...(isDev ? [new webpack.HotModuleReplacementPlugin()] : []),
   ],
   optimization: {
-    minimize: !(process.env.BRICKS_COMPRESS === 'false'),
+    minimize: isProduction && !(process.env.BRICKS_COMPRESS === 'false'),
   },
   performance: {
     hints: false,

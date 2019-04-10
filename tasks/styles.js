@@ -11,9 +11,8 @@ const { stream } = require('browser-sync');
 const config = require('../config');
 const errorHandler = require('../utils/errorHandler');
 
-const compress =
-  process.env.NODE_ENV === 'production' &&
-  !(process.env.BRICKS_COMPRESS === 'false');
+const isProduction = process.env.NODE_ENV === 'production';
+const compress = isProduction && !(process.env.BRICKS_COMPRESS === 'false');
 
 module.exports = function styles() {
   return gulp
