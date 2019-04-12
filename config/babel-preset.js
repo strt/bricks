@@ -1,5 +1,6 @@
 module.exports = env => {
-  const isEnvDevelopment = env === 'development';
+  const isDevelopment = env === 'development';
+  const isProduction = env === 'production';
 
   return {
     presets: [
@@ -18,7 +19,7 @@ module.exports = env => {
       ],
       [
         '@babel/preset-react',
-        { useBuiltIns: true, development: isEnvDevelopment },
+        { useBuiltIns: true, development: isDevelopment },
       ],
     ],
     plugins: [
@@ -36,6 +37,12 @@ module.exports = env => {
       ],
       '@babel/plugin-syntax-dynamic-import',
       'macros',
-    ],
+      isProduction && [
+        'babel-plugin-transform-react-remove-prop-types',
+        {
+          removeImport: true,
+        },
+      ],
+    ].filter(Boolean),
   };
 };
