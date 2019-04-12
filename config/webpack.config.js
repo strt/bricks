@@ -92,9 +92,7 @@ let webpackConfig = {
   optimization: {
     minimize: isProduction && !(process.env.BRICKS_COMPRESS === 'false'),
   },
-  performance: {
-    hints: false,
-  },
+  performance: false,
   node: {
     fs: 'empty',
     process: false,
