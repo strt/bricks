@@ -3,13 +3,15 @@ const isDevelopment = env === 'development';
 const isProduction = env === 'production';
 const isTest = env === 'test';
 
+const useESModules = !isTest;
+
 module.exports = () => {
   return {
     presets: [
       [
         '@babel/preset-env',
         {
-          modules: false,
+          modules: isTest ? 'commonjs' : false,
           useBuiltIns: 'entry',
           corejs: 3,
           exclude: [
@@ -34,10 +36,7 @@ module.exports = () => {
       ],
       ['@babel/plugin-proposal-class-properties', { loose: true }],
       ['@babel/plugin-proposal-object-rest-spread', { useBuiltIns: true }],
-      [
-        '@babel/plugin-transform-runtime',
-        { useESModules: true, regenerator: false },
-      ],
+      ['@babel/plugin-transform-runtime', { useESModules, regenerator: false }],
       '@babel/plugin-syntax-dynamic-import',
       isTest && 'babel-plugin-dynamic-import-node',
       isProduction && [
