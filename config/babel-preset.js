@@ -1,7 +1,9 @@
-module.exports = env => {
-  const isDevelopment = env === 'development';
-  const isProduction = env === 'production';
+const env = process.env.NODE_ENV;
+const isDevelopment = env === 'development';
+const isProduction = env === 'production';
+const isTest = env === 'test';
 
+module.exports = () => {
   return {
     presets: [
       [
@@ -19,7 +21,7 @@ module.exports = env => {
       ],
       [
         '@babel/preset-react',
-        { useBuiltIns: true, development: isDevelopment },
+        { useBuiltIns: true, development: isDevelopment || isTest },
       ],
     ],
     plugins: [
@@ -27,6 +29,7 @@ module.exports = env => {
         'babel-plugin-transform-async-to-promises',
         {
           inlineHelpers: true,
+          externalHelpers: true,
         },
       ],
       ['@babel/plugin-proposal-class-properties', { loose: true }],
@@ -36,13 +39,14 @@ module.exports = env => {
         { useESModules: true, regenerator: false },
       ],
       '@babel/plugin-syntax-dynamic-import',
-      'macros',
+      isTest && 'babel-plugin-dynamic-import-node',
       isProduction && [
         'babel-plugin-transform-react-remove-prop-types',
         {
           removeImport: true,
         },
       ],
+      'macros',
     ].filter(Boolean),
   };
 };
