@@ -87,7 +87,6 @@ let webpackConfig = {
   plugins: [
     new CaseSensitivePathsPlugin(),
     new FriendlyErrorsPlugin(),
-    new webpack.EnvironmentPlugin({ NODE_ENV: 'production' }),
     ...(isDev ? [new webpack.HotModuleReplacementPlugin()] : []),
   ],
   optimization: {
