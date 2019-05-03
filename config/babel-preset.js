@@ -9,7 +9,7 @@ module.exports = () => {
   return {
     presets: [
       [
-        '@babel/preset-env',
+        require.resolve('@babel/preset-env'),
         {
           modules: isTest ? 'commonjs' : false,
           useBuiltIns: 'entry',
@@ -22,30 +22,39 @@ module.exports = () => {
         },
       ],
       [
-        '@babel/preset-react',
+        require.resolve('@babel/preset-react'),
         { useBuiltIns: true, development: isDevelopment || isTest },
       ],
     ],
     plugins: [
       [
-        'babel-plugin-transform-async-to-promises',
+        require.resolve('babel-plugin-transform-async-to-promises'),
         {
           inlineHelpers: true,
           externalHelpers: true,
         },
       ],
-      ['@babel/plugin-proposal-class-properties', { loose: true }],
-      ['@babel/plugin-proposal-object-rest-spread', { useBuiltIns: true }],
-      ['@babel/plugin-transform-runtime', { useESModules, regenerator: false }],
-      '@babel/plugin-syntax-dynamic-import',
-      isTest && 'babel-plugin-dynamic-import-node',
+      [
+        require.resolve('@babel/plugin-proposal-class-properties'),
+        { loose: true },
+      ],
+      [
+        require.resolve('@babel/plugin-proposal-object-rest-spread'),
+        { useBuiltIns: true },
+      ],
+      [
+        require.resolve('@babel/plugin-transform-runtime'),
+        { useESModules, regenerator: false },
+      ],
+      require.resolve('@babel/plugin-syntax-dynamic-import'),
+      isTest && require.resolve('babel-plugin-dynamic-import-node'),
       isProduction && [
-        'babel-plugin-transform-react-remove-prop-types',
+        require.resolve('babel-plugin-transform-react-remove-prop-types'),
         {
           removeImport: true,
         },
       ],
-      'macros',
+      require.resolve('babel-plugin-macros'),
     ].filter(Boolean),
   };
 };
