@@ -100,7 +100,7 @@ function merge(base, config) {
 
 function getConfig() {
   const cwd = fs.realpathSync(process.cwd());
-  const { pkg } = readPkgUp.sync({ cwd });
+  const { package: pkg } = readPkgUp.sync({ cwd });
   const configPath = findUp.sync('bricks.config.js', { cwd });
   let userConfig = {};
 
