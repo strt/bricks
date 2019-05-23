@@ -18,6 +18,9 @@ module.exports = function icons() {
     )
     .pipe(
       sprite({
+        shape: {
+          dest: '.',
+        },
         mode: {
           symbol: {
             dest: '',
