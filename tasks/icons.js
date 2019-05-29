@@ -9,6 +9,8 @@ module.exports = function icons() {
   const src = path.join(config.source, config.icons.path, '**/**.svg');
   const dest = path.join(config.output, config.icons.path);
 
+  const shape = config.icons.copy ? { dest: '.' } : null;
+
   return gulp
     .src(src)
     .pipe(
@@ -18,9 +20,7 @@ module.exports = function icons() {
     )
     .pipe(
       sprite({
-        shape: {
-          dest: '.',
-        },
+        shape,
         mode: {
           symbol: {
             dest: '',
