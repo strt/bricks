@@ -15,6 +15,7 @@ const defaultConfig = {
   },
   icons: {
     path: 'icons',
+    copy: false,
   },
   styles: {
     path: 'styles',

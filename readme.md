@@ -60,6 +60,7 @@ module.exports = {
 | `scripts.path` | `{String}` | `scripts` | Path to scripts directory |
 | `scripts.entries` | `{Object}` | `` |  |
 | `icons.path` | `{String}` | `icons` | Path to icons directory |
+| `icons.copy` | `{Boolean}` | `false` | Copy icon files to dist folder |
 | `webpack` | `{Function}` | `null` | Function to extend the use of `webpack` |
 
 #### `source`
@@ -108,6 +109,18 @@ module.exports = {
       app: './app.js',
       polyfills: './polyfills.js',
     },
+  }
+}
+```
+
+#### `icons`
+Generates a stylesheet from SVG files. It's also possible to copy the icon files to the dist folder by setting the `copy` property to `true`.
+```javascript
+// bricks.config.js
+module.exports = {
+  icons: {
+    path: 'icons',
+    copy: false,
   }
 }
 ```
