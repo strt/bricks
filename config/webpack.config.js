@@ -1,43 +1,43 @@
-const { resolve, join } = require('path');
+const { resolve } = require('path');
 const webpack = require('webpack');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-const { loadPartialConfig, createConfigItem } = require('@babel/core');
 const config = require('./config');
 
 const isDev = process.env.NODE_ENV === 'development';
-const babelPreset = createConfigItem(require('./babel-preset'), {
-  type: 'preset',
-});
+const isProduction = process.env.NODE_ENV === 'production';
 
-function getBabelConfig(dir) {
-  const babelConfig = {
-    cacheDirectory: true,
-    presets: [],
-    babelrc: false,
-  };
+function getEntry() {
+  const { entries } = config.scripts;
 
-  const filename = join(dir, 'filename.js');
-  const externalBabelConfig = loadPartialConfig({
-    babelrc: true,
-    filename,
-  });
-
-  if (externalBabelConfig && externalBabelConfig.babelrc) {
-    babelConfig.babelrc = true;
+  if (!isDev || !config.publicPath) {
+    return entries;
   }
 
-  if (!babelConfig.babelrc) {
-    babelConfig.presets.push(babelPreset);
+  const client = 'webpack-hot-middleware/client?reload=true';
+
+  if (Array.isArray(entries)) {
+    return [client, ...entries];
   }
 
-  return babelConfig;
+  if (typeof entries === 'object') {
+    return Object.entries(entries).reduce((acc, [key, value]) => {
+      acc[key] = [
+        `${client}&name=${key}`,
+        ...(Array.isArray(value) ? [...value] : [value]),
+      ];
+
+      return acc;
+    }, {});
+  }
+
+  return entries;
 }
 
 let webpackConfig = {
   mode: isDev ? 'development' : 'production',
   devtool: isDev ? 'cheap-module-source-map' : 'source-map',
-  entry: config.scripts.entries,
+  entry: getEntry(),
   output: {
     path: resolve(config.output),
     publicPath: config.publicPath || '',
@@ -48,11 +48,14 @@ let webpackConfig = {
     strictExportPresence: true,
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|mjs|jsx|ts|tsx)$/,
         include: config.source,
-        exclude: /(node_modules)/,
-        loader: 'babel-loader',
-        options: getBabelConfig(config.dir),
+        loader: require.resolve('./babel-loader'),
+        options: {
+          cacheDirectory: true,
+          presets: [],
+          babelrc: false,
+        },
       },
     ],
   },
@@ -61,9 +64,10 @@ let webpackConfig = {
     new FriendlyErrorsPlugin(),
     ...(isDev ? [new webpack.HotModuleReplacementPlugin()] : []),
   ],
-  performance: {
-    hints: false,
+  optimization: {
+    minimize: isProduction && !(process.env.BRICKS_COMPRESS === 'false'),
   },
+  performance: false,
   node: {
     fs: 'empty',
     process: false,
@@ -71,7 +75,7 @@ let webpackConfig = {
 };
 
 if (typeof config.webpack === 'function') {
-  webpackConfig = config.webpack(webpackConfig, isDev);
+  webpackConfig = config.webpack({ webpackConfig, config, isDev });
 }
 
 module.exports = webpackConfig;

@@ -6,9 +6,11 @@ const config = require('../config');
 module.exports = function sizes() {
   const src = [path.join(config.output, '**/**'), '!**/*.map', '!**/images/**'];
 
-  return gulp.src(src).pipe(size({
-    gzip: true,
-    showFiles: true,
-    showTotal: false,
-  }));
+  return gulp.src(src).pipe(
+    size({
+      gzip: true,
+      showFiles: true,
+      showTotal: false,
+    }),
+  );
 };

@@ -1,9 +1,9 @@
 const fs = require('fs');
 const { resolve, join } = require('path');
-const deepmerge = require('deepmerge');
 const readPkgUp = require('read-pkg-up');
 const findUp = require('find-up');
 const timestamp = require('../utils/timestamp');
+const isObject = require('../utils/isObject');
 const validateConfig = require('../utils/validateConfig');
 
 const defaultConfig = {
@@ -15,6 +15,7 @@ const defaultConfig = {
   },
   icons: {
     path: 'icons',
+    copy: false,
   },
   styles: {
     path: 'styles',
@@ -43,13 +44,14 @@ const defaultConfig = {
     files: ['**/*.html', '**/*.twig'],
   },
   browserslist: [
-    'ie 11',
-    'last 2 Edge versions',
-    'last 2 Firefox versions',
-    'last 2 Chrome versions',
-    'last 2 Safari versions',
-    'last 2 iOS versions',
-    'last 2 ChromeAndroid versions',
+    'last 2 iOS major versions',
+    'last 2 Safari major versions',
+    'last 2 ChromeAndroid major versions',
+    'last 2 Chrome major versions',
+    'last 2 Edge major versions',
+    'last 2 Firefox major versions',
+    'IE 11',
+    '> 5%',
   ],
   webpack: null,
 };
@@ -62,11 +64,13 @@ function resolvePaths(prevConfig) {
   config.output = resolvePath(config.output);
 
   config.styles.entries = config.styles.entries.map(i =>
-    join(config.source, config.styles.path, i));
+    join(config.source, config.styles.path, i),
+  );
 
   if (Array.isArray(config.scripts.entries)) {
     config.scripts.entries = config.scripts.entries.map(i =>
-      join(config.source, config.scripts.path, i));
+      join(config.source, config.scripts.path, i),
+    );
   } else {
     config.scripts.entries = Object.keys(config.scripts.entries).reduce(
       (acc, key) => {
@@ -82,21 +86,27 @@ function resolvePaths(prevConfig) {
   return config;
 }
 
-function mergeConfigs(...configs) {
-  return deepmerge.all([...configs], {
-    arrayMerge: (dest, src) => src,
-  });
+function merge(base, config) {
+  return Object.keys(config).reduce((acc, key) => {
+    const value = isObject(base[key])
+      ? { ...base[key], ...config[key] }
+      : config[key];
+
+    return {
+      ...acc,
+      [key]: value,
+    };
+  }, base);
 }
 
 function getConfig() {
-  const dir = fs.realpathSync(process.cwd());
-  const { pkg } = readPkgUp.sync();
-  const configPath = findUp.sync('bricks.config.js');
+  const cwd = fs.realpathSync(process.cwd());
+  const { package: pkg } = readPkgUp.sync({ cwd });
+  const configPath = findUp.sync('bricks.config.js', { cwd });
   let userConfig = {};
 
   if (configPath) {
-    // eslint-disable-next-line global-require, import/no-dynamic-require
-    const userConfigModule = require(configPath);
+    const userConfigModule = require(configPath); // eslint-disable-line global-require, import/no-dynamic-require
     userConfig = userConfigModule.default || userConfigModule;
   }
 
@@ -104,7 +114,10 @@ function getConfig() {
     delete defaultConfig.browserslist;
   }
 
-  const config = resolvePaths(Object.assign({}, mergeConfigs(defaultConfig, userConfig), { dir }));
+  const config = resolvePaths({
+    ...merge(defaultConfig, userConfig),
+    dir: cwd,
+  });
 
   if (!validateConfig(config)) {
     process.exit(0);

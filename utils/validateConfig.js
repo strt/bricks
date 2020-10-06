@@ -3,11 +3,11 @@ const path = require('path');
 const chalk = require('chalk');
 const log = require('./log');
 
-function checkRequiredFiles(files) {
+function validateFiles(files) {
   let currentFilePath;
 
   try {
-    files.forEach((filePath) => {
+    files.forEach(filePath => {
       currentFilePath = filePath;
       fs.accessSync(filePath, fs.F_OK);
     });
@@ -18,7 +18,7 @@ function checkRequiredFiles(files) {
     const fileName = path.basename(currentFilePath);
 
     log.error(
-      'Could not find a required file.',
+      'Could not find a required file or directory.',
       `${chalk.red('  Name: ') + fileName}\n${chalk.red('  Searched in: ') +
         dirName}`,
     );
@@ -28,7 +28,7 @@ function checkRequiredFiles(files) {
 }
 
 module.exports = function validateConfig(config) {
-  const requiredFiles = [
+  const files = [
     config.source,
     ...config.styles.entries,
     ...(Array.isArray(config.scripts.entries)
@@ -36,9 +36,5 @@ module.exports = function validateConfig(config) {
       : Object.values(config.scripts.entries)),
   ];
 
-  let isValid = true;
-
-  isValid = checkRequiredFiles(requiredFiles);
-
-  return isValid;
+  return validateFiles(files);
 };
