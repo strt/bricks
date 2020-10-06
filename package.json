@@ -68,7 +68,7 @@
     "friendly-errors-webpack-plugin": "^1.7.0",
     "gulp": "^4.0.0",
     "gulp-if": "^2.0.2",
-    "gulp-imagemin": "^5.0.0",
+    "gulp-imagemin": "^7.0.0",
     "gulp-plumber": "^1.2.0",
     "gulp-postcss": "^8.0.0",
     "gulp-sass": "^4.0.1",
