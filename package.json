@@ -1,8 +1,8 @@
 {
   "name": "@strt/bricks",
   "description": "A zero-configuration toolkit for building modern web apps",
-  "version": "2.19.2",
-  "author": "Strateg Marknadsföring AB <alexander.nanberg@strateg.se>",
+  "version": "2.19.3",
+  "author": "Strateg Marknadsföring AB <development@strateg.se>",
   "license": "MIT",
   "repository": "github:strt/bricks",
   "keywords": [
